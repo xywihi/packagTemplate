@@ -1,0 +1,2 @@
+# packagTemplate
+react+webpack+redux
