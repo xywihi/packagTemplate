@@ -68,6 +68,7 @@ module.exports = merge(baseWebpackConfig,{
         // })
         new HtmlWebpackPlugin({
             title:'CESHIXIANGMU',   //html 文件的标题
+            favicon:'static/icons/logo.ico',
             filename: utils.resolve('./../dist/index.html'), // html模板的生成路径
             template: 'index.html',//html模板
             chunks: ['app'], // 至注入app和app相关的bundle

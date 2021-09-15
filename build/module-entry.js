@@ -73,9 +73,11 @@ function getHtmlWebpackPluginList(options={}){
         for(let index in moduleList){
             const moduleName = moduleList[index];
             const HtmlWebpackPluginOptions = {
+                title:'CESHIXIANGMU',   //html 文件的标题
                 filename: utils.resolve('./../dist/'+ moduleName+ '/index.html'), // html模板的生成路径
                 template: utils.resolve("./../src/modules/" + moduleName + "/index.html"),//html模板
                 inject: true, // true：默认值，script标签位于html文件的 body 底部
+                favicon:'static/icons/logo.ico',
                 chunks: [moduleName],  // 注入哪个名称bundel
             };
             if(options.extract){
@@ -97,6 +99,8 @@ function getHtmlWebpackPluginList(options={}){
         if(MODULE_NAME){
             // modules目录下的打包模板文件配置
             HtmlWebpackPluginList.push(new HtmlWebpackPlugin(Object.assign({
+                title:'CESHIXIANGMU',   //html 文件的标题
+                favicon:'static/icons/logo.ico',
                 filename: utils.resolve('./../dist/'+ MODULE_NAME+ '/index.html'), // html模板的生成路径
                 template: utils.resolve("./../src/modules/" + MODULE_NAME + "/index.html"),//html模板
                 inject: true, // true：默认值，script标签位于html文件的 body 底部
@@ -105,6 +109,8 @@ function getHtmlWebpackPluginList(options={}){
         }else{
             // 添加默认的输出模板文件
             HtmlWebpackPluginList.push(new HtmlWebpackPlugin(Object.assign({
+                title:'CESHIXIANGMU',   //html 文件的标题
+                favicon:'static/icons/logo.ico',
                 filename: utils.resolve('./../dist/index.html'), // html模板的生成路径
                 template: 'index.html',//html模板
                 inject: true, // true：默认值，script标签位于html文件的 body 底部
