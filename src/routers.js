@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import LoadableComponent from "./loadable";
-import HomePage from "./pages/home";
 
 const Routers = () => {
   return (
