@@ -1,23 +1,23 @@
 import styled from 'styled-components'
 
-export const HomeBox = styled.div`
+export const HomeBox = styled.div `
     background:#333;
     flex: 1;
     height: 100%;
 `
-export const HomeInnerBoxFirst = styled.div`
+export const HomeInnerBoxFirst = styled.div `
     background:#fff;
     flex: 1;
     height: 100%;
 `
-export const HomeContentBox = styled.div`
+export const HomeContentBox = styled.div `
     background:#fff;
     flex: 1;
     height: 100%;
     padding: 0 12px;
     
 `
-export const NoticeBox = styled.div`
+export const NoticeBox = styled.div `
     color:#00B578;
     background:#ECF4EE;
     flex: 1;
@@ -28,7 +28,7 @@ export const NoticeBox = styled.div`
         margin-left:6px;
     }
 `
-export const GetCionsBox = styled.div`
+export const GetCionsBox = styled.div `
     color:#00B578;
     background:#ECF4EE;
     flex: 1;
@@ -75,7 +75,7 @@ export const GetCionsBox = styled.div`
         box-shadow:0px 4px 10px #0e8c6170;
     }
 `
-export const IconsTabBox = styled.div`
+export const IconsTabBox = styled.div `
 margin:14px 0;
 .adm-space-item{
     flex:1;
@@ -94,10 +94,10 @@ margin:14px 0;
        
     }
 `
-export const DonationBox = styled.div`
+export const DonationBox = styled.div `
 margin-top:32px;
 `
-export const DonationContent = styled.div`
+export const DonationContent = styled.div `
 margin-top:20px;
 display:flex;
 .donationInp{
@@ -116,17 +116,18 @@ display:flex;
     }
 }
 `
-export const PioneerBox = styled.div`
+export const PioneerBox = styled.div `
     margin-top:32px;
 `
-export const PioneerContent = styled.div`
+
+export const PioneerContent = styled.div `
     display:flex;
     margin-top:20px;
     justify-content:space-between;
 `
-export const PioneerCard = styled.div`
+export const PioneerCard = styled.div `
     height:118px;
-    width:10.6rem;
+    width:48%;
     border-radius:10px;
     background:#F4F4F4;
     background-image:url(${props => props.bgImg});
@@ -147,4 +148,42 @@ export const PioneerCard = styled.div`
         align-self: end;
     }
     
+`
+export const ForestBox = styled.div `
+    margin-top:32px;
+`
+export const ForestContent = styled.div `
+    width: 100%;
+    margin-top:20px;
+    justify-content:space-between;
+    .adm-page-indicator-dot-active{
+        background:#00B578;
+    }
+`
+export const SwiperItem = styled.div `
+        height: 96px;
+        padding:12px;
+        border-radius:10px;
+        margin-right:8px;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content:space-between;
+        align-items: start;
+        user-select: none;
+        background-image:${props=>props.active?'':'linear-gradient(to right, white 0%,white 0%),'} url(${props => props.bgImg});
+        background-blend-mode: saturation;
+        background-size: cover;
+        >div:last-child {
+            span{
+                margin-left:4px;
+            }
+            font-size:13px;
+        }
+`
+export const ForestItemDes = styled.div `
+        margin-top:12px;
+        color:#444;
+        font-size:14px;
+        line-height:24px;
 `
