@@ -55,7 +55,7 @@ module.exports = merge(baseWebpackConfig,{
         liveReload:true,
         // hotOnly: true,  //即使是HMR没有生效，我们也不去刷新页面
         host:'127.0.0.1', //设置默认监听域名，如果省略，默认为“localhost”
-        port:8081,  //设置默认端口，如果省略，默认为“8080”
+        port:8080,  //设置默认端口，如果省略，默认为“8080”
     },
     plugins:[
         //热更新相关

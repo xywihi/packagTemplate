@@ -5,9 +5,10 @@ import LoadableComponent from "./loadable";
 const Routers = () => {
   return (
     <Switch>
-      <Route exact path="/" component={LoadableComponent(()=>import("./pages/home"))} />
-      <Route exact path="/user" component={LoadableComponent(()=>import("./pages/user"))} />
-      <Route exact path="/blog" component={LoadableComponent(()=>import("./pages/blog"))} />
+      <Route exact path="/home" component={LoadableComponent(()=>import("./pages/home"))} />
+      <Route exact path="/recharge" component={LoadableComponent(()=>import("./pages/user"))} />
+      <Route exact path="/team" component={LoadableComponent(()=>import("./pages/blog"))} />
+      <Route exact path="/my" component={LoadableComponent(()=>import("./pages/blog"))} />
     </Switch>
   );
 };
