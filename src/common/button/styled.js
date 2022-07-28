@@ -12,6 +12,9 @@ export const ButtonBox = styled.div`
     color:${props => props.color};
     width:${props => props.width};
     height:${props => props.height};
+    transition: .3s;
+    opacity:${props => props.disable? 0.2 : 1};
     background:${props => props.background};
     box-shadow:0px 2px 4px ${props => props.background+'6a'};
+    
 `

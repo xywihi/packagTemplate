@@ -23,22 +23,22 @@ const HeaderNav = () => {
   const tabs = [
     {
       key: '/home',
-      title: '首页',
+      title: 'Home',
       icon: <AppOutline />,
     },
     {
       key: '/recharge',
-      title: '我的待办',
+      title: 'Recharge',
       icon: <UnorderedListOutline />,
     },
     {
       key: '/team',
-      title: '我的消息',
+      title: 'Team',
       icon: <MessageOutline />,
     },
     {
       key: '/my',
-      title: '个人中心',
+      title: 'My',
       icon: <UserOutline />,
     },
   ]
