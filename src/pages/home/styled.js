@@ -32,11 +32,11 @@ export const HomeInnerBoxFirst = styled.div`
 `
 export const HomeContentBox = styled.div`
     z-index:1;
+    width: calc(100% - 24px);
     position:absolute;
     top:-80px;
-    flex: 1;
-    height: 100%;
     padding: 0 12px;
+    padding-bottom: 60px;
 `
 export const NoticeBox = styled.div`
     color:#00B578;
@@ -58,8 +58,10 @@ export const GetCionsBox = styled.div`
     padding: 10px 12px;
     display:flex;
     justify-content: space-between;
+    align-items:center;
     margin-top:8px;
     .leftBox{
+        flex: inherit;
         .top{
             color:#333;
             .topLeft span:first-child{
@@ -83,7 +85,6 @@ export const GetCionsBox = styled.div`
                 color:#B9D4D4;
                 font-size:12px;
                 margin-left:12px;
-                display: inline-block;
                 position: relative;
                 left: -92px;
                 transition:.5s all ease;

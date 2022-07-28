@@ -47,6 +47,7 @@ import hecai from "@/assets/images/hecai.png";
 import Title from "@/common/title";
 import Button from "@/common/Button";
 import Modals from "@/common/modals";
+import Notice from "@/common/notice";
 import { FloatingBubble } from 'antd-mobile'
 import { MessageFill } from 'antd-mobile-icons'
 const HomePage = () => {
@@ -59,6 +60,7 @@ const HomePage = () => {
     const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac']
     const swiperImgs = [swiper1, swiper2, swiper3, swiper4];
     const ref = useRef(null)
+    let notices=['Environmental protection public welfare donation!','Environmental protection public.']
     const items = colors.map((color, index) => (
         <Swiper.Item key={index}>
             <SwiperItem bgImg={swiperImgs[index]} active={swiperIndex == index && 'active'} onClick={() => { ref.current.swipeNext(); console.log(ref.current) }}>
@@ -102,10 +104,7 @@ const HomePage = () => {
             <HomeInnerBoxFirst onScroll={handScroll}>
 
                 <HomeContentBox onScroll={handScroll}>
-                    <NoticeBox>
-                        <BellOutline />
-                        <span>Environmental protection public welfare donation!</span>
-                    </NoticeBox>
+                    <Notice notices={notices} />
                     <GetCionsBox got={cions.got}>
                         <div className='leftBox'>
                             <div className='top'>

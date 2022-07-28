@@ -16,5 +16,7 @@ export const ButtonBox = styled.div`
     opacity:${props => props.disable? 0.2 : 1};
     background:${props => props.background};
     box-shadow:0px 2px 4px ${props => props.background+'6a'};
+    -moz-box-shadow:0px 2px 4px ${props => props.background+'6a'} ; /*firefox*/ 
+    -webkit-box-shadow: 0px 2px 4px ${props => props.background+'6a'};
     
 `
