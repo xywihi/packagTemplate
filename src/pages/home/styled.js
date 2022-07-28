@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import homeBg from '../../assets/images/homeBg.png';
-import homeBg2 from '../../assets/images/homeBg2.png';
+import xianrenzhang from '../../assets/images/xianrenzhang.png';
+import grassesBg from '../../assets/images/grassesBg.png';
 export const HomeBox = styled.div`
     flex: 1;
     height: 100%;
     background:url(${homeBg});
     background-size:180% auto;
     background-repeat: no-repeat;
+    background-attachment:fixed;
 `
 export const HomeInnerBoxFirst = styled.div`
     margin-top:180px;
@@ -225,6 +227,11 @@ export const ModalContentBox = styled.div`
         top: calc(50% - 113px) ;
         width:296px;
         height:226px;
+        background-image:url(${props=>props.type!='vip' ? xianrenzhang : grassesBg});
+        background-repeat: no-repeat;
+        background-size: 90% auto;
+        background-position-x: center;
+        background-position-y: 95%;
         .hecaiImg{
             z-index:-1;
             position:absolute;
@@ -284,8 +291,7 @@ export const ModalButton = styled.div`
 export const RadiuBox = styled.div`
     width:60px;
     height:60px;
-    
-    
+    margin-bottom: 10px;
     align-self: end;
     .waters{
         width:60px;
@@ -293,7 +299,7 @@ export const RadiuBox = styled.div`
         overflow:hidden;
         background:#9adabb7a;
         ${'' /* isolation: isolate; */}
-        box-shadow:inset 0px -4px 10px #91D6A3,inset -1px 1px 1px #fff;
+        box-shadow:inset 0px -4px 10px #91D6A3,inset -1px 1px 1px #fff,0px 4px 10px #0e8c6170;
         border-radius:50%;
         position:relative;
         display:flex;
@@ -310,7 +316,7 @@ export const RadiuBox = styled.div`
     }
     .grassesImg{
         position: absolute;
-        top: 13px;
+        top: 2px;
         z-index: 999;
         left: calc(50% - 20px);
     }

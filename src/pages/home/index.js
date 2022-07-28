@@ -54,7 +54,7 @@ const HomePage = () => {
     const [swiperIndex, setSwiperIndex] = useState(0);
     const [num, setNum] = useState({ value: 0, done: false });
     const [cions, setCions] = useState({ cion: 2356, got: false });
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState({isvisible:false,type:'ordinary'})
     const icons = [{ key: level, name: 'Level' }, { key: about, name: 'About' }, { key: recharge, name: 'Recharge' }, { key: inivate, name: 'Inivate' }]
     const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac']
     const swiperImgs = [swiper1, swiper2, swiper3, swiper4];
@@ -67,7 +67,8 @@ const HomePage = () => {
             </SwiperItem>
         </Swiper.Item>
     ))
-    let getNum = () => {
+    let getNum = (type) => {
+        setVisible({isvisible:true,type});
         let timer = setInterval(() => {
             let newNum = Math.floor(Math.random() * 100);
             setNum({ ...num, value: newNum })
@@ -85,14 +86,22 @@ const HomePage = () => {
 
         setCions({ cion: oldCions, got: true });
     }
+    
+    let handScroll = (e) => {
+        console.log(e,'yyyyyyyy')
+    }
+    if (document.addEventListener) {
+        document.addEventListener('DOMMouseScroll', handScroll, false);
+    }
+    window.onmousewheel = document.onmousewheel = handScroll;
     return (
-        <HomeBox>
+        <HomeBox >
             <div className='top'>
                 <NavBar back={null} left={<span style={{ color: 'white' }}>LOGO</span>} right={<span style={{ color: 'white' }}>English</span>}></NavBar>
             </div>
-            <HomeInnerBoxFirst>
+            <HomeInnerBoxFirst onScroll={handScroll}>
 
-                <HomeContentBox>
+                <HomeContentBox onScroll={handScroll}>
                     <NoticeBox>
                         <BellOutline />
                         <span>Environmental protection public welfare donation!</span>
@@ -144,12 +153,12 @@ const HomePage = () => {
                             <PioneerCard bgImg={cactus}>
                                 <Title img={ordinary} width={15} height={15} name="Ordinary lottery" fit="cover" fontSize={13} />
                                 <span className='des'>Use 10u ,you will have the opportunity to get 3-100u.</span>
-                                <Button onClick={() => { getNum(); setVisible(true); }} className="btn" content="Play" color="#fff" background="#00B578" width={40} height={24} />
+                                <Button onClick={() => { getNum('ordinary');  }} className="btn" content="Play" color="#fff" background="#00B578" width={40} height={24} />
                             </PioneerCard>
                             <PioneerCard bgImg={grass}>
                                 <Title img={pioneerVip} width={15} height={15} name="Pioneer lottery" fit="cover" fontSize={13} />
                                 <span className='des'>The higher the level of pioneer, the richer the prize.</span>
-                                <Button onClick={() => { getNum(); setVisible(true) }} className="btn" content="Play" color="#fff" background="#00B578" width={40} height={24} />
+                                <Button onClick={() => { getNum('vip');  }} className="btn" content="Play" color="#fff" background="#00B578" width={40} height={24} />
                             </PioneerCard>
                         </PioneerContent>
                     </PioneerBox>
@@ -204,8 +213,8 @@ const HomePage = () => {
                 </RadiuBox>
 
             </FloatingBubble>
-            <Modals type="action" width={295} height={226} visible={visible}>
-                <ModalContentBox finish={num.done}>
+            <Modals type="action" width={295} height={226} visible={visible.isvisible}>
+                <ModalContentBox finish={num.done} type={visible.type}> 
                     <Image
                         src={hecai}
                         width={280}
@@ -225,7 +234,7 @@ const HomePage = () => {
                             Use 10u ,you will have the opportunity to get 3-100u.
                         </p>
                     </ModalContent>
-                    <ModalButton onClick={() => { setVisible(false); setNum({ ...num, done: false }) }}>Okay</ModalButton>
+                    <ModalButton onClick={() => { setVisible({isvisible:false,type:''}); setNum({ ...num, done: false }) }}>Okay</ModalButton>
 
                 </ModalContentBox>
             </Modals>
