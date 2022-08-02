@@ -26,6 +26,9 @@ import {
     RadiuInner,
     GrassesImg
 } from './styled';
+import {
+    useHistory,
+  } from 'react-router-dom';
 import { BellOutline, TeamOutline } from 'antd-mobile-icons';
 import level from "@/assets/icons/level.png";
 import about from "@/assets/icons/about.png";
@@ -47,21 +50,21 @@ import hecai from "@/assets/images/hecai.png";
 import Title from "@/common/title";
 import Button from "@/common/Button";
 import Modals from "@/common/modals";
-import Notice from "@/common/notice";
-import { FloatingBubble } from 'antd-mobile';
-import { MessageFill } from 'antd-mobile-icons';
-
+import { FloatingBubble, Popup } from 'antd-mobile'
+import { MessageFill } from 'antd-mobile-icons'
 const HomePage = () => {
     const [donateValue, setDonateValue] = useState('');
     const [swiperIndex, setSwiperIndex] = useState(0);
+    const [showInivate, setShowInivate] = useState(false);
     const [num, setNum] = useState({ value: 0, done: false });
     const [cions, setCions] = useState({ cion: 2356, got: false });
     const [visible, setVisible] = useState({isvisible:false,type:'ordinary'})
-    const icons = [{ key: level, name: 'Level' }, { key: about, name: 'About' }, { key: recharge, name: 'Recharge' }, { key: inivate, name: 'Inivate' }]
+    const icons = [{ key: level, name: 'Level', path:'/level' }, { key: about, name: 'About', path:'/about' }, { key: recharge, name: 'Recharge', path:'/recharge' }, { key: inivate, name: 'Inivate', path:'/inivate' }]
     const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac']
     const swiperImgs = [swiper1, swiper2, swiper3, swiper4];
-    const ref = useRef(null)
-    let notices=['Environmental protection public welfare donation!','Environmental protection public.']
+    const ref = useRef(null);
+    const ref2 = useRef(null);
+    const history = useHistory()
     const items = colors.map((color, index) => (
         <Swiper.Item key={index}>
             <SwiperItem bgImg={swiperImgs[index]} active={swiperIndex == index && 'active'} onClick={() => { ref.current.swipeNext(); console.log(ref.current) }}>
@@ -91,21 +94,39 @@ const HomePage = () => {
     }
     
     let handScroll = (e) => {
-        console.log(e,'yyyyyyyy')
+        if(e.target.scrollTop>80){
+            ref2.current.style.background='#fff';
+            ref2.current.style.color='#333';
+            ref2.current.style.boxShadow='0px 2px 10px #ececec';
+            
+        }else{
+            ref2.current.style.background='none';
+            ref2.current.style.color='#fff';
+            ref2.current.style.boxShadow='none';
+        }
+        
+        
     }
-    if (document.addEventListener) {
-        document.addEventListener('DOMMouseScroll', handScroll, false);
+    let goInnerPage = (path) => {
+        console.log(path,'jjjjjjj')
+        history.push(path)
     }
-    window.onmousewheel = document.onmousewheel = handScroll;
+    // if (document.addEventListener) {
+    //     document.addEventListener('DOMMouseScroll', handScroll, false);
+    // }
+    // window.onmousewheel = document.onmousewheel = handScroll;
     return (
-        <HomeBox >
-            <div className='top'>
-                <NavBar back={null} left={<span style={{ color: 'white' }}>LOGO</span>} right={<span style={{ color: 'white' }}>English</span>}></NavBar>
+        <HomeBox onScroll={handScroll}>
+            <div className='top' ref={ref2}>
+                <NavBar back={null} left={<span>LOGO</span>} right={<span>English</span>}></NavBar>
             </div>
-            <HomeInnerBoxFirst onScroll={handScroll}>
+            <HomeInnerBoxFirst >
 
-                <HomeContentBox onScroll={handScroll}>
-                    <Notice notices={notices} />
+                <HomeContentBox >
+                    <NoticeBox >
+                        <BellOutline />
+                        <span>Environmental protection public welfare donation!</span>
+                    </NoticeBox>
                     <GetCionsBox got={cions.got}>
                         <div className='leftBox'>
                             <div className='top'>
@@ -122,7 +143,7 @@ const HomePage = () => {
                     </GetCionsBox>
                     <IconsTabBox>
                         <Space block wrap>
-                            {icons.map(item => <div className='iconBox' key={item.name}><Image
+                            {icons.map(item => <div className='iconBox' key={item.name} onClick={()=>item.name==='Inivate' ? setShowInivate(true) : goInnerPage(item.path)}><Image
                                 src={item.key}
                                 width={64}
                                 height={64}
@@ -238,7 +259,19 @@ const HomePage = () => {
 
                 </ModalContentBox>
             </Modals>
-
+            <Popup
+              visible={showInivate}
+              onMaskClick={() => {
+                setShowInivate(false)
+              }}
+              bodyStyle={{
+                borderTopLeftRadius: '8px',
+                borderTopRightRadius: '8px',
+                minHeight: '40vh',
+              }}
+            >
+              asdckContent
+            </Popup>
         </HomeBox>
     )
 }

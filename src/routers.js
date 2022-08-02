@@ -11,6 +11,7 @@ const Routers = () => {
       <Route exact path="/team" component={LoadableComponent(()=>import("./pages/blog"))} />
       <Route exact path="/my" component={LoadableComponent(()=>import("./pages/blog"))} />
       <Route exact path="/login" component={LoadableComponent(()=>import("./pages/login"))} />
+      <Route exact path="/level" component={LoadableComponent(()=>import("./pages/level"))} />
     </Switch>
   );
 };
