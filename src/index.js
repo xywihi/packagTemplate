@@ -41,9 +41,7 @@ class App extends React.Component {
             <React.Fragment>
                 <GlobalStyle />
                 <Router initialEntries={['/home']}>
-
                     <div className='app'>
-                        
                         <div className='body'>
                             <Routers />
                         </div>
