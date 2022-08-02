@@ -17,7 +17,7 @@ const HeaderNav = () => {
   const location = useLocation()
   const { pathname } = location
   const setRouteActive = (value) => {
-    console.log(value,'iiiii')
+    console.log(pathname,'iiiii')
     history.push(value)
   }
   const tabs = [

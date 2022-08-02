@@ -39,6 +39,16 @@ export const LoginContentBox = styled.div`
     width: calc(100% - 24px);
     position:absolute;
     padding: 0 12px;
+    .read{ 
+        padding:0;
+        .adm-form-item-child{
+            background:none;
+            padding:0;
+        }
+        .adm-list-item-content-main{
+            padding:0;
+        }
+    }
 `
 export const DesBox = styled.div`
     position:absolute;
@@ -98,6 +108,7 @@ export const FormItemBox = styled.div`
         }
         text-decoration:underline;
     }   
+    
 `
 export const Lable = styled.div`
     margin-bottom:4px;
