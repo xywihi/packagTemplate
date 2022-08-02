@@ -48,8 +48,9 @@ import Title from "@/common/title";
 import Button from "@/common/Button";
 import Modals from "@/common/modals";
 import Notice from "@/common/notice";
-import { FloatingBubble } from 'antd-mobile'
-import { MessageFill } from 'antd-mobile-icons'
+import { FloatingBubble } from 'antd-mobile';
+import { MessageFill } from 'antd-mobile-icons';
+
 const HomePage = () => {
     const [donateValue, setDonateValue] = useState('');
     const [swiperIndex, setSwiperIndex] = useState(0);

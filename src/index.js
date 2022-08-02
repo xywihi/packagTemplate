@@ -24,7 +24,7 @@ class App extends React.Component {
         this.state = { data: '' };
     }
     async getData() {
-        const data = await axios.get('/home/imfo');
+        const data = await axios.get('/client/star');
         this.setState({
             data: data.data.data
         })
@@ -40,7 +40,7 @@ class App extends React.Component {
             // </BrowserRouter>
             <React.Fragment>
                 <GlobalStyle />
-                <Router initialEntries={['/home']}>
+                <Router initialEntries={['/login']}>
                     <div className='app'>
                         <div className='body'>
                             <Routers />

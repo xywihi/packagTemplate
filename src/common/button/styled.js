@@ -4,12 +4,12 @@ export const ButtonBox = styled.div`
     display:flex;
     align-items:center;
     justify-content: center;
-    border-radius:50px;
+    border-radius:${props => props.radius+'px' || '50px'};
     text-align:center;
     font-weight:bold;
     padding:0 14px;
-    font-size:${props => props.size};
-    color:${props => props.color};
+    
+    
     width:${props => props.width};
     height:${props => props.height};
     transition: .3s;
@@ -18,5 +18,11 @@ export const ButtonBox = styled.div`
     box-shadow:0px 2px 4px ${props => props.background+'6a'};
     -moz-box-shadow:0px 2px 4px ${props => props.background+'6a'} ; /*firefox*/ 
     -webkit-box-shadow: 0px 2px 4px ${props => props.background+'6a'};
-    
+    button{
+        font-size:${props => props.size};
+        color:${props => props.color};
+        background: none;
+        outline: none;
+        border: none;
+    }
 `
