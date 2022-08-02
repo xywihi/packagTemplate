@@ -5,10 +5,15 @@ import grassesBg from '../../assets/images/grassesBg.png';
 export const HomeBox = styled.div`
     flex: 1;
     height: 100%;
+    overflow:auto;
     background:url(${homeBg});
     background-size:180% auto;
     background-repeat: no-repeat;
     background-attachment:fixed;
+    
+    &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+}
 `
 export const HomeInnerBoxFirst = styled.div`
     margin-top:180px;
@@ -62,6 +67,7 @@ export const GetCionsBox = styled.div`
     .leftBox{
         .top{
             color:#333;
+            
             .topLeft span:first-child{
                 font-size:32px;
                 font-weight:bold;

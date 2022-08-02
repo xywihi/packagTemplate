@@ -9,6 +9,7 @@ const Routers = () => {
       <Route exact path="/recharge" component={LoadableComponent(()=>import("./pages/user"))} />
       <Route exact path="/team" component={LoadableComponent(()=>import("./pages/blog"))} />
       <Route exact path="/my" component={LoadableComponent(()=>import("./pages/blog"))} />
+      <Route exact path="/level" component={LoadableComponent(()=>import("./pages/level"))} />
     </Switch>
   );
 };
