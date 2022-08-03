@@ -29,15 +29,15 @@ const Login=(props)=>{
     const history = useHistory();
     const ref = useRef();
     useEffect(async ()=>{
+        let token=localStorage.getItem('token');
+        if(token) history.push('/home');
         await get('/client/get-country').then(res=>{
-            console.log(res.data.data,'ooopppppppp')
             setCountries(res.data.data)
         })
         return () => {
         };
     },[]);
     const onFinish = (values,key) => {
-        console.log(values,key,'注册')
         let parameter;
         let currentCode;
         switch (key) {
@@ -47,9 +47,14 @@ const Login=(props)=>{
                 delete parameter.country_code;
                 delete parameter.isRead;
                 parameter["phone"]=currentCode+values.phone.phone;
-                post('/client/login',{...parameter}).catch(res=>{
+                post('/client/login',{...parameter}).then(res=>{
+                    if(res.data.token){
+                        localStorage.setItem('token',res.data.token);
+                        history.push('/home');
+                    }
+                }).catch(err=>{
                     Toast.show({
-                        content: res,
+                        content: err,
                         position: 'top',
                       })
                 })
@@ -70,7 +75,7 @@ const Login=(props)=>{
                 })
                 break;
         }
-        // history.push('/home')
+        // 
     };
     const checkMobile = (_, value) => {
         if (value.phone) {
