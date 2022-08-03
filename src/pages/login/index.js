@@ -49,7 +49,8 @@ const Login=(props)=>{
                 parameter["phone"]=currentCode+values.phone.phone;
                 post('/client/login',{...parameter}).then(res=>{
                     if(res.data.token){
-                        localStorage.setItem('token',res.data.token);
+                        // localStorage.setItem('token',res.data.token);
+                        document.cookie="token="+res.data.token;
                         history.push('/home');
                     }
                 }).catch(err=>{
