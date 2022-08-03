@@ -3,4 +3,4 @@ import homeInfo from './json/homeInfo.json'
 
 
 
-Mock.mock('/home/imfo','get',homeInfo)
+export default Mock.mock('/home/imfo','get',homeInfo)

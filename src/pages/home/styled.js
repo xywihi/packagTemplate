@@ -20,7 +20,6 @@ export const HomeInnerBoxFirst = styled.div`
     background:#fff;
     border-top-left-radius:50px;
     flex: 1;
-    height: 100%;
     position:relative;
     &:after{
         content:'';
@@ -38,7 +37,7 @@ export const HomeInnerBoxFirst = styled.div`
 export const HomeContentBox = styled.div`
     z-index:1;
     width: calc(100% - 24px);
-    position:absolute;
+    position:relative;
     top:-80px;
     padding: 0 12px;
     padding-bottom: 60px;

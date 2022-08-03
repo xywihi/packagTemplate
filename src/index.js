@@ -16,22 +16,19 @@ import {
     useLocation,
   } from 'react-router-dom'
 import styles from './index.less'
+import newdata from './mock'
+import { get } from './api/http'
 // import 'antd-mobile/dist/antd.css'; // or 'antd/dist/antd.less'
 
-if (process.env.NODE_ENV == 'development') {
-    require('./mock');
-}
+// if (process.env.NODE_ENV == 'development') {
+//     require('./mock');
+// }
 const App =(props)=> {
     const [data,setData]=useState([]);
     // const location = useLocation()
     // const { pathname } = location
-    let getData = async ()=> {
-        const data = await axios.get('/client/star');
-        setData(data.data.data)
-    }
     useEffect(()=>{
-        console.log(props.history)
-        getData();
+        console.log(newdata,'hhhhhhhh')
     },[])
     return (
         

@@ -18,7 +18,6 @@ export const RechargeBox = styled.div`
     }
 `
 export const RechargeContent = styled.div`
-    margin-bottom: 60px;
 `
 export const AssetsBox = styled.div`
     margin-top:64px;
