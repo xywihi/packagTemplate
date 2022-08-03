@@ -12,7 +12,7 @@ import {
     InfoCard
 } from './styled';
 import Title from "@/common/title";
-import { NavBar } from 'antd-mobile';
+import TopNav from "@/common/TopNav";
 import { LeftOutline } from 'antd-mobile-icons'
 import {
     useHistory,
@@ -32,7 +32,7 @@ const UserPage = () => {
     return (
         <LevelBox>
             <div className='top'>
-                <NavBar back={null} left={<span style={{ fontWeight: 'bold' }}><LeftOutline onClick={toBack}/>Recharge</span>} right={<span>English</span>}></NavBar>
+                <TopNav back={null}  left={<span style={{ fontWeight: 'bold' }}><LeftOutline onClick={toBack}/>Recharge</span>}  right="English"/>
             </div>
             <AuthorLevel>
                 <Image

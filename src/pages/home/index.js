@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { NavBar, Input, Image, Space, Swiper } from 'antd-mobile';
-import SwiperRef from 'antd-mobile/es/components/swiper';
+import { Input, Image, Space, Swiper, FloatingBubble } from 'antd-mobile';
 import {
     HomeBox,
     HomeInnerBoxFirst,
@@ -24,11 +23,11 @@ import {
     RadiuBox,
     Radiu,
     RadiuInner,
-    GrassesImg
+    TabBox
 } from './styled';
 import {
     useHistory,
-  } from 'react-router-dom';
+} from 'react-router-dom';
 import { BellOutline, TeamOutline } from 'antd-mobile-icons';
 import level from "@/assets/icons/level.png";
 import about from "@/assets/icons/about.png";
@@ -48,18 +47,19 @@ import swiper4 from "@/assets/images/swiper4.jpg";
 import grasses from "@/assets/images/grasses.png";
 import hecai from "@/assets/images/hecai.png";
 import Title from "@/common/title";
+import TopNav from "@/common/TopNav";
 import Button from "@/common/Button";
 import Modals from "@/common/modals";
-import { FloatingBubble, Popup } from 'antd-mobile'
-import { MessageFill } from 'antd-mobile-icons'
+import Inivite from "@/common/inivate";
+
 const HomePage = () => {
     const [donateValue, setDonateValue] = useState('');
     const [swiperIndex, setSwiperIndex] = useState(0);
     const [showInivate, setShowInivate] = useState(false);
     const [num, setNum] = useState({ value: 0, done: false });
     const [cions, setCions] = useState({ cion: 2356, got: false });
-    const [visible, setVisible] = useState({isvisible:false,type:'ordinary'})
-    const icons = [{ key: level, name: 'Level', path:'/level' }, { key: about, name: 'About', path:'/about' }, { key: recharge, name: 'Recharge', path:'/recharge' }, { key: inivate, name: 'Inivate', path:'/inivate' }]
+    const [visible, setVisible] = useState({ isvisible: false, type: 'ordinary' })
+    const icons = [{ key: level, name: 'Level', path: '/level' }, { key: about, name: 'About', path: '/about' }, { key: recharge, name: 'Recharge', path: '/recharge' }, { key: inivate, name: 'Inivate', path: '/inivate' }]
     const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac']
     const swiperImgs = [swiper1, swiper2, swiper3, swiper4];
     const ref = useRef(null);
@@ -74,7 +74,7 @@ const HomePage = () => {
         </Swiper.Item>
     ))
     let getNum = (type) => {
-        setVisible({isvisible:true,type});
+        setVisible({ isvisible: true, type });
         let timer = setInterval(() => {
             let newNum = Math.floor(Math.random() * 100);
             setNum({ ...num, value: newNum })
@@ -92,23 +92,23 @@ const HomePage = () => {
 
         setCions({ cion: oldCions, got: true });
     }
-    
+
     let handScroll = (e) => {
-        if(e.target.scrollTop>80){
-            ref2.current.style.background='#fff';
-            ref2.current.style.color='#333';
-            ref2.current.style.boxShadow='0px 2px 10px #ececec';
-            
-        }else{
-            ref2.current.style.background='none';
-            ref2.current.style.color='#fff';
-            ref2.current.style.boxShadow='none';
+        if (e.target.scrollTop > 80) {
+            ref2.current.style.background = '#fff';
+            ref2.current.style.color = '#333';
+            ref2.current.style.boxShadow = '0px 2px 10px #ececec';
+
+        } else {
+            ref2.current.style.background = 'none';
+            ref2.current.style.color = '#fff';
+            ref2.current.style.boxShadow = 'none';
         }
-        
-        
+
+
     }
     let goInnerPage = (path) => {
-        console.log(path,'jjjjjjj')
+        console.log(path, 'jjjjjjj')
         history.push(path)
     }
     // if (document.addEventListener) {
@@ -118,7 +118,7 @@ const HomePage = () => {
     return (
         <HomeBox onScroll={handScroll}>
             <div className='top' ref={ref2}>
-                <NavBar back={null} left={<span>LOGO</span>} right={<span>English</span>}></NavBar>
+                <TopNav back={null}  left={<span>LOGO</span>} right="English"/>
             </div>
             <HomeInnerBoxFirst >
 
@@ -139,11 +139,11 @@ const HomePage = () => {
                             </div>
                             <div className='bot'>Remember to come and receive this every day!</div>
                         </div>
-                        <Button disable={cions.got} content="Get" color="#fff" background="#00B578" height={48} width={48} className='rightBox' onClick={handleGetCions}>Get</Button>
+                        <Button disable={cions.got} radius="10" content="Get" color="#fff" background="#00B578" height={48} width={48} className='rightBox' onClick={handleGetCions}>Get</Button>
                     </GetCionsBox>
                     <IconsTabBox>
                         <Space block wrap>
-                            {icons.map(item => <div className='iconBox' key={item.name} onClick={()=>item.name==='Inivate' ? setShowInivate(true) : goInnerPage(item.path)}><Image
+                            {icons.map(item => <div className='iconBox' key={item.name} onClick={() => item.name === 'Inivate' ? setShowInivate(true) : goInnerPage(item.path)}><Image
                                 src={item.key}
                                 width={64}
                                 height={64}
@@ -165,7 +165,7 @@ const HomePage = () => {
 
                                 className="donationInp"
                             />
-                            <Button content="Donate" background="#1AFFB2" height={44} width={86} />
+                            <Button content="Donate" radius="10" background="#1AFFB2" height={44} width={86} />
                         </DonationContent>
                     </DonationBox>
                     <PioneerBox>
@@ -174,12 +174,12 @@ const HomePage = () => {
                             <PioneerCard bgImg={cactus}>
                                 <Title img={ordinary} width={15} height={15} name="Ordinary lottery" fit="cover" fontSize={13} />
                                 <span className='des'>Use 10u ,you will have the opportunity to get 3-100u.</span>
-                                <Button onClick={() => { getNum('ordinary');  }} className="btn" content="Play" color="#fff" background="#00B578" width={40} height={24} />
+                                <Button radius="10" onClick={() => { getNum('ordinary'); }} className="btn" content="Play" color="#fff" background="#00B578" width={40} height={24} />
                             </PioneerCard>
                             <PioneerCard bgImg={grass}>
                                 <Title img={pioneerVip} width={15} height={15} name="Pioneer lottery" fit="cover" fontSize={13} />
                                 <span className='des'>The higher the level of pioneer, the richer the prize.</span>
-                                <Button onClick={() => { getNum('vip');  }} className="btn" content="Play" color="#fff" background="#00B578" width={40} height={24} />
+                                <Button radius="10" onClick={() => { getNum('vip'); }} className="btn" content="Play" color="#fff" background="#00B578" width={40} height={24} />
                             </PioneerCard>
                         </PioneerContent>
                     </PioneerBox>
@@ -235,7 +235,7 @@ const HomePage = () => {
 
             </FloatingBubble>
             <Modals type="action" width={295} height={226} visible={visible.isvisible}>
-                <ModalContentBox finish={num.done} type={visible.type}> 
+                <ModalContentBox finish={num.done} type={visible.type}>
                     <Image
                         src={hecai}
                         width={280}
@@ -255,23 +255,11 @@ const HomePage = () => {
                             Use 10u ,you will have the opportunity to get 3-100u.
                         </p>
                     </ModalContent>
-                    <ModalButton onClick={() => { setVisible({isvisible:false,type:''}); setNum({ ...num, done: false }) }}>Okay</ModalButton>
+                    <ModalButton onClick={() => { setVisible({ isvisible: false, type: '' }); setNum({ ...num, done: false }) }}>Okay</ModalButton>
 
                 </ModalContentBox>
             </Modals>
-            <Popup
-              visible={showInivate}
-              onMaskClick={() => {
-                setShowInivate(false)
-              }}
-              bodyStyle={{
-                borderTopLeftRadius: '8px',
-                borderTopRightRadius: '8px',
-                minHeight: '40vh',
-              }}
-            >
-              asdckContent
-            </Popup>
+            <Inivite showInivate={showInivate} setShowInivate={setShowInivate}/>
         </HomeBox>
     )
 }

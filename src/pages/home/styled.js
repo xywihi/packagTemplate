@@ -382,3 +382,4 @@ export const GrassesImg = styled.div`
     position:absolute;
     top:14px;
 `
+

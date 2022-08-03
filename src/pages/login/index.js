@@ -1,5 +1,5 @@
 import React,{useState,useRef} from 'react';
-import { NavBar, Image, Tabs, Form, Input, Space, Picker, Checkbox } from 'antd-mobile';
+import { Image, Tabs, Form, Input, Space, Picker, Checkbox } from 'antd-mobile';
 import {
     LoginBox,
     LoginInnerBoxFirst,
@@ -19,6 +19,7 @@ import {
 import grassOne from '@/assets/images/grassOne.png';
 import { DownOutline } from 'antd-mobile-icons';
 import Button from "@/common/Button";
+import TopNav from "@/common/TopNav";
 const Login=(props)=>{
     const [method,setMethod]=useState('login');
     const history = useHistory();
@@ -53,7 +54,7 @@ const Login=(props)=>{
     return (
         <LoginBox>
             <div className='top'>
-                <NavBar back={null} left={<span style={{ color: 'white' }}>LOGO</span>} right={<span style={{ color: 'white' }}>English</span>}></NavBar>
+                <TopNav back={null} left={<span style={{ color: 'white' }}>LOGO</span>} right="English"/>
             </div>
             <LoginInnerBoxFirst>
                 <LoginContentBox>
