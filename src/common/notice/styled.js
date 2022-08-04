@@ -6,7 +6,6 @@ export const NoticeBox = styled.div`
     flex: 1;
     border-radius:50px;
     font-size:12px;
-    padding: 10px 12px;
     display:flex;
     align-items: center;
     overflow:hidden;

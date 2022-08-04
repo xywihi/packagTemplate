@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import LevelCard from './components/levelCard';
 import grass_icon1 from '@/assets/icons/grass_icon1.png';
 import grass_icon2 from '@/assets/icons/grass_icon2.png';
@@ -17,7 +17,9 @@ import { LeftOutline } from 'antd-mobile-icons'
 import {
     useHistory,
   } from 'react-router-dom';
+import { getLevels } from '@/api'
 const UserPage = () => {
+    const [levelsData, setLevelsData] = useState();
     const cards = [
         [grass_icon1, grass_icon2, grass_icon2, grass_icon2, grass_icon2],
         [grass_icon1, grass_icon1, grass_icon2, grass_icon2, grass_icon2],
@@ -25,11 +27,18 @@ const UserPage = () => {
         [grass_icon1, grass_icon1, grass_icon1, grass_icon1, grass_icon2],
         [grass_icon1, grass_icon1, grass_icon1, grass_icon1, grass_icon1],
     ];
-    const history = useHistory()
+    const history = useHistory();
+    useEffect(() => {
+        getLevels().then(res => {
+            console.log(res,'oooooooooo');
+            setLevelsData(res)
+        })
+    }, [])
     let toBack=()=>{
         history.goBack();
     }
     return (
+        levelsData ?
         <LevelBox>
             <div className='top'>
                 <TopNav back={null}  left={<span style={{ fontWeight: 'bold' }}><LeftOutline onClick={toBack}/>Recharge</span>}  right="English"/>
@@ -69,9 +78,10 @@ const UserPage = () => {
             </AuthorLevel>
             <LevelContentBox>
                 <Title img={xianrenzhang_icon} name="Environmental protection level" weight="bold" />
-                {cards.map((item, index) => <LevelCard key={index} icons={item} index={index} />)}
+                {cards.map((item, index) => <LevelCard key={index} icons={item} item={levelsData[index]} index={index} />)}
             </LevelContentBox>
-        </LevelBox>
+        </LevelBox> :
+        <></>
     )
 }
 

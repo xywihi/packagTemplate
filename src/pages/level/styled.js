@@ -24,6 +24,7 @@ export const AuthorLevel = styled.div`
     margin-bottom:20px;
     padding-top: 50px;
     background-image:url(${sunBg});
+    background-position-y: 5px;
     background-repeat: no-repeat;
     background-size: contain;
     margin-top: 60px;

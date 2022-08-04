@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDom from 'react-dom'
 import axios from 'axios'
 import { BrowserRouter } from 'react-router-dom';
@@ -7,44 +7,42 @@ import HeaderNav from '@/common/navs/HeaderNav'
 import { Toast } from 'antd-mobile'
 import { GlobalStyle } from './styled.js';
 import {
-    Route,
-    Switch,
     MemoryRouter as Router,
 } from 'react-router-dom';
-import {
-    useHistory,
-    useLocation,
-  } from 'react-router-dom'
 import styles from './index.less'
-import newdata from './mock'
-import { post } from './api/http'
+import { post } from './api/http';
+import { store, counterSlice } from "@/store";
 // import 'antd-mobile/dist/antd.css'; // or 'antd/dist/antd.less'
 
 // if (process.env.NODE_ENV == 'development') {
 //     require('./mock');
 // }
-const App =(props)=> {
-    const [data,setData]=useState([]);
+const App = (props) => {
+    const [data, setData] = useState([]);
+    const isLogin = localStorage.getItem('token')
     // const location = useLocation()
     // const { pathname } = location
-    useEffect(()=>{
-        // console.log(newdata,'hhhhhhhh')
-        // let token=localStorage.getItem('token');
+    useEffect(() => {
+        let token=localStorage.getItem('token');
+        if(token){
+            post('/client/user-profile').then(res => {
+                // document.cookie="token="+res.data.token;
+                store.dispatch(counterSlice.actions.getData(res));
+            }).catch(err => {
+                Toast.show({
+                    content: err,
+                    position: 'top',
+                })
+            })
+        }
         
-        post('/client/user-profile').then(res=>{
-            
-        }).catch(err=>{
-            Toast.show({
-                content: err,
-                position: 'top',
-              })
-        })
+
     },[])
     return (
-        
+
         <React.Fragment>
             <GlobalStyle />
-            <Router initialEntries={['/login']}>
+            <Router initialEntries={[isLogin ? '/home' : '/login']}>
                 <div className='app'>
                     <div className='body'>
                         <Routers />

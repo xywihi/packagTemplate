@@ -10,9 +10,13 @@ export const HomeBox = styled.div`
     background-size:180% auto;
     background-repeat: no-repeat;
     background-attachment:fixed;
-    
+    padding-bottom: 50px;
+    .top{
+        top:25px;
+    }
     &::-webkit-scrollbar {
     display: none; /* Chrome Safari */
+    
 }
 `
 export const HomeInnerBoxFirst = styled.div`
@@ -40,7 +44,6 @@ export const HomeContentBox = styled.div`
     position:relative;
     top:-80px;
     padding: 0 12px;
-    padding-bottom: 60px;
 `
 export const NoticeBox = styled.div`
     color:#00B578;
@@ -134,6 +137,11 @@ margin-top:32px;
 export const DonationContent = styled.div`
 margin-top:20px;
 display:flex;
+.donateBtn{
+    button{
+        font-weight:bold;
+    }
+}
 .donationInp{
     padding:8px 16px;
     background:#ECF6F3;
@@ -312,7 +320,7 @@ export const RadiuBox = styled.div`
         justify-content:center;
         align-items:center;
         &:after{
-        content:'123';
+        content:'${props=>(props.count || '0')}';
         position:absolute;
         text-align:center;
         color:#0E8C40;

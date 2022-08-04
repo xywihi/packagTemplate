@@ -19,7 +19,7 @@ export const LoginInnerBoxFirst = styled.div`
     border-top-left-radius:116px;
     border-top-right-radius:0px;
     flex: 1;
-    height: calc(100% - 200px);
+    height: calc(100% - 155px);
     position:relative;
     &:after{
         content: '';
@@ -65,6 +65,7 @@ export const DesSmallItem = styled.div`
 `
 export const TabBox = styled.div`
     margin: 40px 0;
+    padding:0 20px;
     .adm-tabs-header{
         border:0;
         padding:0 52px;
@@ -124,8 +125,8 @@ export const Lable = styled.div`
 `
 export const Buttons = styled.div`
     display:flex;
-    justify-content: space-between;
-    
+    justify-content: space-around;
+    margin-top:20%;
     
 `
 export const TopType = styled.div`

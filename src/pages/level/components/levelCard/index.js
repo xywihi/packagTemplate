@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { CardBox, CardContentLeft, CardContentRight } from './styled.js';
 import { Image } from 'antd-mobile';
 import Button from "@/common/Button";
-const LevelCard = ({ className, icons,index }) => {
+import {getLevelName} from '@/utils'
+const LevelCard = ({ className, icons,index,item }) => {
   let handleGetCions = () => {
     console.log('去支付')
   }
@@ -17,15 +18,15 @@ const LevelCard = ({ className, icons,index }) => {
             fit='cover'
             key={index}
           />)}</div>
-          <div>1st class environmentalist</div>
+          <div>{getLevelName(item.star)} class environmentalist</div>
         </div>
         <div className='price'>
-          <span>{(index+1)*100}</span>
+          <span>{item.price}</span>
           <span>USDT</span>
         </div>
       </CardContentLeft>
       <CardContentRight>
-        <Button content="Get" color="#fff" background="#00B578" height={56} width={56} className='rightBox' onClick={handleGetCions} />
+        <Button radius="50" content="Get" color="#fff" background="#00B578" height={56} width={56} className='rightBox' onClick={handleGetCions} />
       </CardContentRight>
     </CardBox>
   );

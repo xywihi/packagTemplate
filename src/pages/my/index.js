@@ -10,6 +10,7 @@ import { SetOutline, BankcardOutline, MailFill } from 'antd-mobile-icons';
 import {
     useHistory,
 } from 'react-router-dom';
+import { store } from "@/store";
 import Title from "@/common/title";
 import Button from "@/common/Button";
 const TeamsPage = () => {
@@ -40,7 +41,7 @@ const TeamsPage = () => {
                     />
                     <div className='userInf'>
                         <div>Jack</div>
-                        <div><span>ID: MS215467391</span><span>xxx coin: 382644</span></div>
+                        <div><span>ID: MS215467391</span><span>xxx coin: {store.getState().counter.userInfo.coin}</span></div>
                     </div>
                 </div>
                 <div>
@@ -66,7 +67,7 @@ const TeamsPage = () => {
                     <Title img={money} name="My assets" weight="bold" right={<span style={{ color: "#00B578", fontWeight: 500 }}>Details</span>} />
                     <AssetsCard>
                         <div className='price'>
-                            <span>137.00</span>
+                            <span>{store.getState().counter.userInfo.balance}</span>
                             <span>USDT</span>
                         </div>
                         <div className='btns'>

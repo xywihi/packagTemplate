@@ -4,6 +4,7 @@ export const MyBox = styled.div`
     flex: 1;
     height: 100%;
     overflow:auto;
+    padding-bottom: 50px;
     &::-webkit-scrollbar {
     display: none; /* Chrome Safari */
     }
@@ -24,7 +25,7 @@ export const MyContBoxTop = styled.div`
     background-image:url(${homeBg});
     background-size:cover;
     height:140px;
-    padding:60px 12px 12px;
+    padding:90px 12px 12px;
     color:#fff;
     .userInfo{
         display:flex;

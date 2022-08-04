@@ -68,6 +68,7 @@ export const LevelCard = styled.div`
         justify-content:space-between;
         margin:6px 0;
         color:#fff;
+        font-size:14px;
     }
 `
 export const TeamBox = styled.div`
