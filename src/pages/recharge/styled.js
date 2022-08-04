@@ -21,7 +21,7 @@ export const RechargeBox = styled.div`
 export const RechargeContent = styled.div`
 `
 export const AssetsBox = styled.div`
-    margin-top:64px;
+    margin-top:110px;
 `
 export const HistoryBox = styled.div`
     

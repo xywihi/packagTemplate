@@ -4,6 +4,7 @@ import grass_icon1 from '@/assets/icons/grass_icon1.png';
 import grass_icon2 from '@/assets/icons/grass_icon2.png';
 import xianrenzhang_icon from '@/assets/icons/xianrenzhang_icon.png';
 import sun from '@/assets/icons/sun.png';
+import avtor from "@/assets/images/avtor.png";
 import { Image } from 'antd-mobile';
 import {
     LevelBox,
@@ -17,7 +18,8 @@ import { LeftOutline } from 'antd-mobile-icons'
 import {
     useHistory,
   } from 'react-router-dom';
-import { getLevels } from '@/api'
+import { getLevels } from '@/api';
+import Skeletons from "@/common/skeletons";
 const UserPage = () => {
     const [levelsData, setLevelsData] = useState();
     const cards = [
@@ -55,10 +57,12 @@ const UserPage = () => {
 
                     <div className='author'>
                         <Image
-                            src={grass_icon1}
+                            src={avtor}
                             width={30}
                             height={30}
                             fit='cover'
+                            style={{ borderRadius: 50 }}
+
                         />
                         <div className="icons">
                             {cards[3].map((item, index) => <Image
@@ -70,7 +74,7 @@ const UserPage = () => {
                             />)}
                         </div>
                         <div className="level">
-                            4th class environmentalist
+                            Level 4 environmentalist
                         </div>
                     </div>
                     <div className='des'>The higher the environmental protection level, the higher the income, and the richer the rights and interests!</div>
@@ -81,7 +85,7 @@ const UserPage = () => {
                 {cards.map((item, index) => <LevelCard key={index} icons={item} item={levelsData[index]} index={index} />)}
             </LevelContentBox>
         </LevelBox> :
-        <></>
+        <Skeletons/>
     )
 }
 

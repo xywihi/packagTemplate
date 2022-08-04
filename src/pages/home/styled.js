@@ -10,10 +10,6 @@ export const HomeBox = styled.div`
     background-size:180% auto;
     background-repeat: no-repeat;
     background-attachment:fixed;
-    padding-bottom: 50px;
-    .top{
-        top:25px;
-    }
     &::-webkit-scrollbar {
     display: none; /* Chrome Safari */
     
@@ -71,7 +67,7 @@ export const GetCionsBox = styled.div`
         flex: inherit;
         .top{
             color:#333;
-            
+            margin: 4px 0;
             .topLeft span:first-child{
                 font-size:32px;
                 font-weight:bold;
@@ -98,7 +94,6 @@ export const GetCionsBox = styled.div`
                 transition:.5s all ease;
                 opacity:${props => props.got ? 1 : 0};
             }
-            margin-bottom:8px
         }
         .bot{
             font-size:10px;

@@ -4,7 +4,6 @@ export const MyBox = styled.div`
     flex: 1;
     height: 100%;
     overflow:auto;
-    padding-bottom: 50px;
     &::-webkit-scrollbar {
     display: none; /* Chrome Safari */
     }
@@ -25,12 +24,12 @@ export const MyContBoxTop = styled.div`
     background-image:url(${homeBg});
     background-size:cover;
     height:140px;
-    padding:90px 12px 12px;
+    padding:80px 12px 12px;
     color:#fff;
     .userInfo{
         display:flex;
         align-items:center;
-        margin-bottom:15px;
+        margin-bottom:20px;
         .userInf{
             margin-left:12px;
             font-size:12px;
@@ -80,6 +79,7 @@ export const MyContBox = styled.div`
     padding:0 12px;
     width: calc(100% - 24px);
     overflow: auto;
+    margin-bottom: 50px;
 `
 export const AssetsBox = styled.div`
     margin-top:32px;

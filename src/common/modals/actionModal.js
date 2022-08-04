@@ -5,7 +5,7 @@ const ActionModal = ({ content,visible=false }) => {
   
   return (
     <ModalBox>
-      <Mask visible={visible} onMaskClick={() => setVisible(false)} style={{"--z-index":50}}>
+      <Mask  visible={visible} onMaskClick={() => setVisible(false)} style={{"--z-index":9999}}>
         <div className="overlayContent">{content}</div>
         
       </Mask>

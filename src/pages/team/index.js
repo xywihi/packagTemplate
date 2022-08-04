@@ -15,14 +15,23 @@ import avtor from "@/assets/images/avtor.png";
 import {
     useHistory,
 } from 'react-router-dom';
-import { getTeams } from '@/api'
+import { getTeams } from '@/api';
+import { store, teamDataSlice } from '@/store';
+import Skeletons from "@/common/skeletons";
+
 const TeamsPage = () => {
     const [showInivate, setShowInivate] = useState(false);
-    const [teamData, setTeamData] = useState();
+    const [isFinish, setIsFinish] = useState(false);
+    const teamData = store.getState().teamData.data;
     const history = useHistory();
     useEffect(() => {
-        getTeams().then(res => setTeamData(res))
-    }, [])
+        getTeams().then(res => {
+          store.dispatch(
+            teamDataSlice.actions.getdata(res)
+          );
+          setIsFinish(true)
+        })
+    }, [teamData])
     let toSuccessorList = (level) => {
         history.push('/team/list', { level })
     }
@@ -129,7 +138,7 @@ const TeamsPage = () => {
                 </TeamsContBox>
                 <Inivite showInivate={showInivate} setShowInivate={setShowInivate} />
             </TeamsBox> :
-            <></>
+            <Skeletons/>
     )
 }
 

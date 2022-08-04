@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Image, Tabs, Form, Input, Space, Picker, Checkbox, Toast } from 'antd-mobile';
+import { Image, SpinLoading, Form, Input, Space, Picker, Checkbox, Toast } from 'antd-mobile';
 import {
     LoginBox,
     LoginInnerBoxFirst,
@@ -20,11 +20,13 @@ import grassOne from '@/assets/images/grassOne.png';
 import { DownOutline } from 'antd-mobile-icons';
 import Button from "@/common/Button";
 import TopNav from "@/common/TopNav";
+import Loading from "@/common/Loading";
 import { getCountry, toLogin, getUserInfo } from '@/api';
 import { store, counterSlice} from "@/store";
 const Login = (props) => {
     const [method, setMethod] = useState('login');
     const [countries, setCountries] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const history = useHistory();
     const ref = useRef();
@@ -39,6 +41,7 @@ const Login = (props) => {
     const onFinish = (values, key) => {
         let parameter;
         let currentCode;
+        setIsLoading(true)
         switch (key) {
             case 'login':
                 currentCode = values.phone.country_code;
@@ -52,6 +55,7 @@ const Login = (props) => {
                         localStorage.setItem('token', token);
                         getUserInfo().then(res=>{
                             store.dispatch(counterSlice.actions.getData(res));
+                            setIsLoading(false)
                             history.push('/home');
                         })
                     }
@@ -101,6 +105,7 @@ const Login = (props) => {
     }
     return (
         <LoginBox>
+            {isLoading && <Loading/>}
             <div className='top'>
                 <TopNav back={null} left={<span style={{ color: 'white' }}>LOGO</span>} right="English" />
             </div>

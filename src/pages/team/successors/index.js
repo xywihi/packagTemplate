@@ -13,7 +13,8 @@ import {
     useHistory,
 } from 'react-router-dom';
 import TopNav from '@/common/TopNav';
-import { getTeamsDetail } from '@/api'
+import { getTeamsDetail } from '@/api';
+import Skeletons from "@/common/skeletons";
 const Successors = () => {
     const history = useHistory();
     const avtors = [
@@ -122,7 +123,7 @@ const Successors = () => {
                     </Swiper>
                 </TabBox>
             </SuccessorsBox> :
-            <></>
+            <Skeletons/>
     )
 }
 

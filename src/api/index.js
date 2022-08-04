@@ -29,6 +29,20 @@ export const toLogin=(parameter)=>new Promise((resolve)=>{
     })
 })
 
+//登出
+export const toLogout=()=>new Promise((resolve)=>{
+    post('/client/logout').then(res => {
+        // document.cookie="token="+res.data.token;
+        // store.dispatch(counterSlice.actions.update(res));
+        resolve(res.data)
+    }).catch(err => {
+        Toast.show({
+            content: err,
+            position: 'top',
+        })
+    })
+})
+
 //获取用户信息
 export const getUserInfo=()=>new Promise((resolve)=>{
     let token=localStorage.getItem('token');
