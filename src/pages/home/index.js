@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { connect } from 'react-redux';
 import {
   Input,
   Image,
@@ -67,14 +68,12 @@ import {
 } from "@/api";
 import { getHomeData } from "@/api";
 import Skeletons from "@/common/skeletons";
-const HomePage = () => {
+const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) => {
   const [donateValue, setDonateValue] = useState("");
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [showInivate, setShowInivate] = useState(false);
   const [num, setNum] = useState({ value: 0, done: false });
   const [cions, setCions] = useState({got: false });
-  // const [homeData, setHomeData] = useState();
-  const homeData = store.getState().homeData.data;
   const [visible, setVisible] = useState({
     isvisible: false,
     type: "ordinary",
@@ -110,9 +109,7 @@ const HomePage = () => {
   ));
   useEffect(() => {
     getHomeData().then((res) => {
-      store.dispatch(
-        homeDataSlice.actions.getdata(res)
-      )
+      handleUpdateData(res);
       setCions({ got: false });
     });
   }, []);
@@ -125,12 +122,7 @@ const HomePage = () => {
     handleLotteryNormal().then((res) => {
       let timer2 = setTimeout(() => {
         setNum((value) => ({ value: res.award, done: true }));
-        store.dispatch(
-          counterSlice.actions.update({
-            type: "editCoin",
-            data: { coin: res.coin, award: res.award },
-          })
-        );
+        lotteryNormal({ coin: res.coin, award: res.award });
         // clearInterval(timer);
         clearTimeout(timer2);
       }, 1200);
@@ -141,13 +133,14 @@ const HomePage = () => {
   let handleGetCions = () => {
     let oldCions = Number(homeData.user_stat.total);
     oldCions += Number(homeData.user_stat.daily);
-    store.dispatch(homeDataSlice.actions.update({type:'editTotal',data:{total:oldCions}}))
+    console.log(homeData,oldCions)
+    getCions(oldCions.toFixed(2))
+    setCions({ cion: oldCions, got: true });
     // getDailyReward().then((res) => {
-    //   store.dispatch(homeDataSlice.actions.update({type:'editTotal',total:oldCions}))
+    //   getCions(oldCions.toFixed(2))
     //   setCions({ cion: oldCions, got: true });
     // });
   };
-
   let handScroll = (e) => {
     if (e.target.scrollTop > 30) {
       ref2.current.style.background = "#fff";
@@ -176,7 +169,7 @@ const HomePage = () => {
             <div className="leftBox">
               <div className="top">
                 <span className="topLeft">
-                  <span>{store.getState().homeData.data.user_stat.total}</span>
+                  <span>{homeData.user_stat.total}</span>
                   <span>USDT</span>
                 </span>
                 <span className="topRight">
@@ -197,7 +190,7 @@ const HomePage = () => {
               height={48}
               width={48}
               className="rightBox"
-              onClick={handleGetCions}
+              onClick={()=>handleGetCions(homeData.user_stat)}
             >
               Get
             </Button>
@@ -367,7 +360,7 @@ const HomePage = () => {
           alignItems: "end",
         }}
       >
-        <RadiuBox count={store.getState().counter.userInfo.energy}>
+        <RadiuBox count={userInfo.energy}>
           <Image
             src={grasses}
             width={40}
@@ -420,5 +413,18 @@ const HomePage = () => {
     </HomeBox>
   ) : <Skeletons />
 };
-
-export default HomePage;
+const getStoreData=(state)=>{
+  console.log(state,'获得了store的数据')
+  return {
+    userInfo:state.counter.userInfo,
+    homeData:state.homeData.data
+  }
+}
+const dispatchAction=(dispatch,ownProps)=>{
+  return {
+    handleUpdateData:(data)=>dispatch(homeDataSlice.actions.getdata(data)),
+    lotteryNormal:(data)=>dispatch(counterSlice.actions.editCoin(data)),
+    getCions:(data)=>dispatch(homeDataSlice.actions.editTotal(data)),
+  }
+}
+export default connect(getStoreData,dispatchAction)(HomePage) ;
