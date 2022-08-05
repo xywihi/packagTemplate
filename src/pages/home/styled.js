@@ -88,9 +88,9 @@ export const GetCionsBox = styled.div`
             .topRight_got{
                 color:#B9D4D4;
                 font-size:12px;
-                margin-left:12px;
-                position: relative;
-                left: -92px;
+                position: absolute;
+                left: 140px;
+                bottom: 0;
                 transition:.5s all ease;
                 opacity:${props => props.got ? 1 : 0};
             }

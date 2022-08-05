@@ -12,6 +12,7 @@ import {
 import styles from './index.less'
 import { post } from './api/http';
 import { store, counterSlice } from "@/store";
+import { Provider } from 'react-redux'
 // import 'antd-mobile/dist/antd.css'; // or 'antd/dist/antd.less'
 
 // if (process.env.NODE_ENV == 'development') {
@@ -23,8 +24,8 @@ const App = (props) => {
     // const location = useLocation()
     // const { pathname } = location
     useEffect(() => {
-        let token=localStorage.getItem('token');
-        if(token){
+        let token = localStorage.getItem('token');
+        if (token) {
             post('/client/user-profile').then(res => {
                 // document.cookie="token="+res.data.token;
                 store.dispatch(counterSlice.actions.getData(res));
@@ -35,23 +36,26 @@ const App = (props) => {
                 })
             })
         }
-        
 
-    },[])
+
+    }, [])
     return (
 
         <React.Fragment>
             <GlobalStyle />
-            <HashRouter>
-                <div className='app'>
-                    <div className='body'>
-                        <Routers />
+            <Provider store={store}>
+                <HashRouter initialEntries={[isLogin ? '/home' : '/login']}>
+                    <div className='app'>
+                        <div className='body'>
+                            <Routers />
+                        </div>
+                        <div className='bottom'>
+                            <HeaderNav />
+                        </div>
                     </div>
-                    <div className='bottom'>
-                        <HeaderNav />
-                    </div>
-                </div>
-            </HashRouter>
+                </HashRouter>
+            </Provider>
+
         </React.Fragment>
 
     )
