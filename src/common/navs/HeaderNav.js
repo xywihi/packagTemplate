@@ -25,7 +25,7 @@ const HeaderNav = () => {
   }
   const tabs = [
     {
-      key: '/home',
+      key: '/',
       title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>home</span>),
       icon: ((active) => <Image
       src={active ? home_active : home}

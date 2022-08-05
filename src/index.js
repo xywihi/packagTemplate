@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactDom from 'react-dom'
 import axios from 'axios'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter,HashRouter } from 'react-router-dom';
 import Routers from './routers'
 import HeaderNav from '@/common/navs/HeaderNav'
 import { Toast } from 'antd-mobile'
@@ -42,7 +42,7 @@ const App = (props) => {
 
         <React.Fragment>
             <GlobalStyle />
-            <Router initialEntries={[isLogin ? '/home' : '/login']}>
+            <HashRouter>
                 <div className='app'>
                     <div className='body'>
                         <Routers />
@@ -51,7 +51,7 @@ const App = (props) => {
                         <HeaderNav />
                     </div>
                 </div>
-            </Router>
+            </HashRouter>
         </React.Fragment>
 
     )
