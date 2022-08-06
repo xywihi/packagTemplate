@@ -14,13 +14,11 @@ import {
 } from './styled';
 import Title from "@/common/title";
 import TopNav from "@/common/TopNav";
-import { LeftOutline } from 'antd-mobile-icons'
-import {
-    useHistory,
-  } from 'react-router-dom';
+import { LeftOutline } from 'antd-mobile-icons';
 import { getLevels } from '@/api';
 import Skeletons from "@/common/skeletons";
-const UserPage = () => {
+import { t } from 'i18next';
+const UserPage = ({history}) => {
     const [levelsData, setLevelsData] = useState();
     const cards = [
         [grass_icon1, grass_icon2, grass_icon2, grass_icon2, grass_icon2],
@@ -29,10 +27,8 @@ const UserPage = () => {
         [grass_icon1, grass_icon1, grass_icon1, grass_icon1, grass_icon2],
         [grass_icon1, grass_icon1, grass_icon1, grass_icon1, grass_icon1],
     ];
-    const history = useHistory();
     useEffect(() => {
         getLevels().then(res => {
-            console.log(res,'oooooooooo');
             setLevelsData(res)
         })
     }, [])
@@ -43,7 +39,7 @@ const UserPage = () => {
         levelsData ?
         <LevelBox>
             <div className='top'>
-                <TopNav back={null}  left={<span style={{ fontWeight: 'bold' }}><LeftOutline onClick={toBack}/>Recharge</span>}  right="English"/>
+                <TopNav back={null}  left={<span style={{ fontWeight: 'bold' }}><LeftOutline onClick={toBack}/>{t('level')}</span>}  right="English"/>
             </div>
             <AuthorLevel>
                 <Image
@@ -74,14 +70,14 @@ const UserPage = () => {
                             />)}
                         </div>
                         <div className="level">
-                            Level 4 environmentalist
+                            {t('level')} 4 {t('l_environmentalist')}
                         </div>
                     </div>
-                    <div className='des'>The higher the environmental protection level, the higher the income, and the richer the rights and interests!</div>
+                    <div className='des'>{t('l_higher')}</div>
                 </InfoCard>
             </AuthorLevel>
             <LevelContentBox>
-                <Title img={xianrenzhang_icon} name="Environmental protection level" weight="bold" />
+                <Title img={xianrenzhang_icon} name={t('l_protection')} weight="bold" />
                 {cards.map((item, index) => <LevelCard key={index} icons={item} item={levelsData[index]} index={index} />)}
             </LevelContentBox>
         </LevelBox> :

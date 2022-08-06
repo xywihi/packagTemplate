@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {connect} from "react-redux";
 import { Image, NavBar } from "antd-mobile";
 import {
   MyBox,
@@ -28,10 +29,9 @@ import Title from "@/common/title";
 import Button from "@/common/Button";
 import Loading from "@/common/Loading";
 import { toLogout } from "@/api";
-const TeamsPage = (props) => {
-  const history = useHistory();
+import { t } from "i18next";
+const TeamsPage = ({userInfo, history}) => {
   const [isLoading,setIsLoading]=useState(false)
-  const userInfo = store.getState().counter.userInfo;
   const cards = [
     grass_icon1,
     grass_icon1,
@@ -53,8 +53,11 @@ const TeamsPage = (props) => {
     toLogout().then((res) => {
       localStorage.clear();
       setIsLoading(false)
-      props.history.push("/login");
+      history.push("/login");
     });
+  };
+  let toInfoSets = () => {
+    history.push("/my/set");
   };
   return (
     <MyBox>
@@ -70,7 +73,7 @@ const TeamsPage = (props) => {
                 style={{ marginRight: 15 }}
                 onClick={handleLogout}
               />
-              <SetOutline fontSize={20} />
+              <SetOutline fontSize={20} onClick={toInfoSets}/>
             </>
           }
         ></NavBar>
@@ -105,19 +108,19 @@ const TeamsPage = (props) => {
                 />
               ))}
             </div>
-            <div className="level">Level 4 environmentalist</div>
+            <div className="level">Level 4 {t('l_environmentalist')}</div>
           </div>
-          <div className="date">Term of validity: May,12,2023</div>
+          <div className="date">{t('m_term')}: May,12,2023</div>
         </div>
       </MyContBoxTop>
       <MyContBox>
         <AssetsBox>
           <Title
             img={money}
-            name="My assets"
+            name={t('r_assets')}
             weight="bold"
             right={
-              <span style={{ color: "#00B578", fontWeight: 500 }}>Details</span>
+              <span style={{ color: "#00B578", fontWeight: 500 }}>{t('r_detail')}</span>
             }
           />
           <AssetsCard>
@@ -128,7 +131,7 @@ const TeamsPage = (props) => {
             <div className="btns">
               <Button
                 radius="10"
-                content="Recharge"
+                content={t('r_recharge')}
                 color="#fff"
                 background="#00B578"
                 height={38}
@@ -138,7 +141,7 @@ const TeamsPage = (props) => {
               />
               <Button
                 radius="10"
-                content="Withdraw"
+                content={t('r_withdraw')}
                 color="#fff"
                 background="#4D4D4D"
                 height={38}
@@ -150,26 +153,26 @@ const TeamsPage = (props) => {
           </AssetsCard>
           <EarningCard>
             <Title
-              name={<span style={{ color: "#fff" }}>Earnings</span>}
+              name={<span style={{ color: "#fff" }}>{t('t_earnings')}</span>}
               weight="bold"
               right={
                 <span style={{ color: "#00B578", fontWeight: 500 }}>
-                  Earnings Details
+                  {t('r_detail')}
                 </span>
               }
             />
             <div className="bottomContent">
               <div>
                 <div>21456.00</div>
-                <div>Total</div>
+                <div>{t('m_total')}</div>
               </div>
               <div>
                 <div>367.00</div>
-                <div>Today's</div>
+                <div>{t('m_today')}</div>
               </div>
               <div>
                 <div>647.00</div>
-                <div>Yesterday's</div>
+                <div>{t('m_yesterday')}</div>
               </div>
             </div>
           </EarningCard>
@@ -199,4 +202,15 @@ const TeamsPage = (props) => {
   );
 };
 
-export default TeamsPage;
+const getStoreData=(state)=>{
+  return {
+    userInfo:state.counter.userInfo,
+  }
+}
+const dispatchAction=(dispatch)=>{
+  return {
+    
+    
+  }
+}
+export default connect(getStoreData,dispatchAction)(TeamsPage) ;

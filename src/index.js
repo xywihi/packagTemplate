@@ -12,7 +12,9 @@ import {
 import styles from './index.less'
 import { post } from './api/http';
 import { store, counterSlice } from "@/store";
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import './i18n';
+
 // import 'antd-mobile/dist/antd.css'; // or 'antd/dist/antd.less'
 
 // if (process.env.NODE_ENV == 'development') {

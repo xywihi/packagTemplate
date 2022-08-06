@@ -59,7 +59,7 @@ import Modals from "@/common/modals";
 import Inivite from "@/common/inivate";
 import Notice from "@/common/notice";
 import { get } from "@/api/http";
-import { store, counterSlice, homeDataSlice } from "@/store";
+import { counterSlice, homeDataSlice } from "@/store";
 import {
   handleDonate,
   getDailyReward,
@@ -68,7 +68,10 @@ import {
 } from "@/api";
 import { getHomeData } from "@/api";
 import Skeletons from "@/common/skeletons";
+import { useTranslation } from 'react-i18next'
+
 const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) => {
+  const { t } = useTranslation();
   const [donateValue, setDonateValue] = useState("");
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [showInivate, setShowInivate] = useState(false);
@@ -79,10 +82,10 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
     type: "ordinary",
   });
   const icons = [
-    { key: level, name: "Level", path: "/level" },
-    { key: about, name: "About", path: "/about" },
-    { key: recharge, name: "Recharge", path: "/recharge" },
-    { key: inivate, name: "Inivate", path: "/inivate" },
+    { key: level, name: t('h_level'), path: "/level" },
+    { key: about, name: t('h_about'), path: "/about" },
+    { key: recharge, name: t('h_recharge'), path: "/recharge" },
+    { key: inivate, name: t("h_inivate"), path: "/inivate" },
   ];
   const colors = ["#ace0ff", "#bcffbd", "#e4fabd", "#ffcfac"];
   const swiperImgs = [swiper1, swiper2, swiper3, swiper4];
@@ -99,7 +102,7 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
           console.log(ref.current);
         }}
       >
-        <span>Forest{index + 1}</span>
+        <span>{t('h_forest')}{index + 1}</span>
         <div>
           <TeamOutline />
           <span>326</span>
@@ -173,18 +176,18 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
                   <span>USDT</span>
                 </span>
                 <span className="topRight">
-                  +{homeData.user_stat.daily} every day
+                  +{homeData.user_stat.daily} {t('h_everyDay')}
                 </span>
                 <span className="topRight_got">Got it today</span>
               </div>
               <div className="bot">
-                Remember to come and receive this every day!
+                 {t('h_remeber')}
               </div>
             </div>
             <Button
               disable={cions.got}
               radius="10"
-              content="Get"
+              content={t('get')}
               color="#fff"
               background="#00B578"
               height={48}
@@ -220,10 +223,10 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
             </Space>
           </IconsTabBox>
           <DonationBox>
-            <Title img={water} name="Donation area" weight="bold" />
+            <Title img={water} name={t('h_donation')} weight="bold" />
             <DonationContent>
               <Input
-                placeholder="Enter your amount"
+                placeholder={t('h_enterAmouny')}
                 value={donateValue}
                 onChange={(val) => {
                   setDonateValue(val);
@@ -232,7 +235,7 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
               />
               <Button
                 className="donateBtn"
-                content="Donate"
+                content={t("h_donate")}
                 radius="50"
                 background="#1AFFB2"
                 height={44}
@@ -242,19 +245,19 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
             </DonationContent>
           </DonationBox>
           <PioneerBox>
-            <Title img={pioneer} name="Pioneer Paradise" weight="bold" />
+            <Title img={pioneer} name={t('h_pioneer')} weight="bold" />
             <PioneerContent>
               <PioneerCard bgImg={cactus}>
                 <Title
                   img={ordinary}
                   width={15}
                   height={15}
-                  name="Ordinary lottery"
+                  name={t('h_ordinaryL')}
                   fit="cover"
                   fontSize={13}
                 />
                 <span className="des">
-                  Use 100u ,you will have the opportunity to get 3-100u.
+                  {t('h_ordinaryDes')}
                 </span>
                 <Button
                   radius="10"
@@ -262,7 +265,7 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
                     getNum("ordinary");
                   }}
                   className="btn"
-                  content="Play"
+                  content={t('h_play')}
                   color="#fff"
                   background="#00B578"
                   width={40}
@@ -274,12 +277,12 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
                   img={pioneerVip}
                   width={15}
                   height={15}
-                  name="Pioneer lottery"
+                  name={t("h_pioneerL")}
                   fit="cover"
                   fontSize={13}
                 />
                 <span className="des">
-                  The higher the level of pioneer, the richer the prize.
+                  {t('h_pioneerDes')}
                 </span>
                 <Button
                   radius="10"
@@ -287,7 +290,7 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
                     getNum("vip");
                   }}
                   className="btn"
-                  content="Play"
+                  content={t('h_play')}
                   color="#fff"
                   background="#00B578"
                   width={40}
@@ -300,7 +303,7 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
           <ForestBox>
             <Title
               img={forest}
-              name="All forests"
+              name={t('h_allForests')}
               weight="bold"
               right={
                 <>
@@ -394,10 +397,9 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
           </ModalTopCad>
           <ModalContent>
             <p>
-              Congratulations on winning the above rewards through the ordinary
-              lottery!!!
+              {t('h_congratulationsDes')}
             </p>
-            <p>Use 100u ,you will have the opportunity to get 3-100u.</p>
+            <p>{t('h_congratulationsNotice')}</p>
           </ModalContent>
           <ModalButton
             onClick={() => {
@@ -405,7 +407,7 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
               setNum({ ...num, done: false });
             }}
           >
-            Okay
+            {t('h_okay')}
           </ModalButton>
         </ModalContentBox>
       </Modals>
@@ -414,7 +416,6 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
   ) : <Skeletons />
 };
 const getStoreData=(state)=>{
-  console.log(state,'获得了store的数据')
   return {
     userInfo:state.counter.userInfo,
     homeData:state.homeData.data

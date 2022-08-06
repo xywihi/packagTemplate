@@ -11,7 +11,6 @@ const counterSlice = createSlice({
             return {...state, userInfo: action.payload}
         },
         editCoin:(state, action)=>{
-            console.log(action.payload,'来了老弟！！！')
             let userInfo=JSON.parse(JSON.stringify(state.userInfo))
             userInfo.balance=Number(userInfo.balance)+action.payload.award;
             userInfo.coin=Number(userInfo.coin)+action.payload.coin;
@@ -22,6 +21,12 @@ const counterSlice = createSlice({
             let userInfo=JSON.parse(JSON.stringify(state.userInfo))
             userInfo.energy=Number(userInfo.energy)+action.payload.data.energy;
             return {...state, userInfo}
+        },
+        updateUserInfo:(state, action)=>{
+            console.log(action.payload,'pppppp')
+            // let userInfo=JSON.parse(JSON.stringify(state.userInfo))
+            // userInfo.energy=Number(userInfo.energy)+action.payload.data.energy;
+            return {...state, userInfo:action.payload}
         },
     }
 })

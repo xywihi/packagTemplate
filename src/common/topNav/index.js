@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TitleBox } from './styled.js';
 import { Image, Picker, NavBar } from 'antd-mobile';
+import i18n from "i18next";
 const Title = ({ className, back , right, left , type }) => {
   const [showInivate, setShowInivate] = useState(false);
   const [value, setValue] = useState(['M'])
@@ -11,7 +12,7 @@ const Title = ({ className, back , right, left , type }) => {
     [
       { label: 'English', value: 'en' },
       { label: 'Frence', value: 'fr' },
-      { label: '简体中文', value: 'jz' },
+      { label: '简体中文', value: 'zh' },
       { label: '繁体中文', value: 'fz' },
     ]
   ]
@@ -24,7 +25,7 @@ const Title = ({ className, back , right, left , type }) => {
   }
   return (
     <>
-      <NavBar back={back} left={left} right={<span onClick={handleDo}>{basicColumns[0].filter(item=>{
+      <NavBar back={back} left={left} right={right && <span onClick={handleDo}>{basicColumns[0].filter(item=>{
         console.log(item,value[0],'ooooooooo')
        return item.value==value[0]
       })[0]?.label || 'English'}</span>}></NavBar>
@@ -36,6 +37,7 @@ const Title = ({ className, back , right, left , type }) => {
         }}
         value={value}
         onConfirm={v => {
+          i18n.changeLanguage(v);
           setValue(v)
         }}
       />

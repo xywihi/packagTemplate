@@ -15,6 +15,7 @@ import {
 import TopNav from '@/common/TopNav';
 import { getTeamsDetail } from '@/api';
 import Skeletons from "@/common/skeletons";
+import { t } from 'i18next';
 const Successors = () => {
     const history = useHistory();
     const avtors = [
@@ -59,7 +60,7 @@ const Successors = () => {
         detailData ?
             <SuccessorsBox>
                 <div className='top'>
-                    <TopNav back={null} left={<span style={{ fontWeight: 'bold' }}><LeftOutline onClick={toBack} />Successor</span>} right="English" />
+                    <TopNav back={null} left={<span style={{ fontWeight: 'bold' }}><LeftOutline onClick={toBack} />{t('successor')}</span>} right="English" />
                 </div>
                 <TabBox>
                     <Tabs
@@ -90,7 +91,7 @@ const Successors = () => {
                             <Swiper.Item key={element.key}>
                                 <SuccessorCard>
                                     <div className='title'>
-                                        <span>{element.key} level successor</span>
+                                        <span>{element.key} {t('t_levelSuccessor')}</span>
                                         <div><span>{detailData[activeIndex + 1].length}</span><span><TeamOutline /></span></div>
                                     </div>
                                     <div className='avtors'>
@@ -106,11 +107,11 @@ const Successors = () => {
                                 </SuccessorCard>
                                 <RankingTeam >
                                     <RankingTeamItem style={{ marginBottom: "10px" }}>
-                                        <span style={{ fontWeight: "bold" }}>Ranking of Team </span>
+                                        <span style={{ fontWeight: "bold" }}>{t('t_ranking')} </span>
                                     </RankingTeamItem>
                                     <RankingTeamItem style={{ color: "#B58E0F" }}>
                                         <span>ID</span>
-                                        <span>Earnings</span>
+                                        <span>{t('t_earnings')}</span>
                                     </RankingTeamItem>
                                     {detailData[activeIndex + 1].map(item => (<RankingTeamItem key={item.user_id}>
                                         <div className='id'><span>{item.user.phone}</span></div>

@@ -116,6 +116,9 @@ export const EarningCard = styled.div`
     background:#2C2C2C;
     border-radius:10px;
     padding:14px;
+    &>div:first-child{
+        padding:8px 0;
+    }
     .bottomContent{
         display:flex;
         align-items:center;
@@ -124,7 +127,7 @@ export const EarningCard = styled.div`
         div div:first-child{
             font-size:18px;
             color:#fff;
-            margin:36px 0 12px;
+            margin:20px 0 12px;
         }
         div div:last-child{
             font-size:12px;

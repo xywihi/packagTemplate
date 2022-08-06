@@ -21,6 +21,7 @@ import { NavBar, DatePicker, InfiniteScroll, DotLoading } from 'antd-mobile';
 import { DownFill, ClockCircleOutline, BillOutline } from 'antd-mobile-icons'
 import Button from "@/common/Button";
 import { mockRequest } from './data.js'
+import { t } from 'i18next';
 const UserPage = () => {
     const [visible, setVisible] = useState(false);
     const [dateYear, setDateYear] = useState(new Date());
@@ -75,25 +76,25 @@ const UserPage = () => {
             </div>
             <RechargeContent>
                 <AssetsBox>
-                    <Title img={assets} name="My assets" weight="bold" right={<span style={{ color: "#00B578", fontWeight: 500 }}>Detail</span>} />
+                    <Title img={assets} name={t('r_assets')} weight="bold" right={<span style={{ color: "#00B578", fontWeight: 500 }}>{t('r_detail')}</span>} />
                     <AssetsCard>
                         <div className='price'>
                             <span>137.00</span>
                             <span>USDT</span>
                         </div>
                         <div className='btns'>
-                            <Button radius="10" content="Recharge" color="#fff" background="#00B578" height={38} width={90} className='rightBox' onClick={handleRecharge} />
-                            <Button radius="10" content="Withdraw" color="#fff" background="#4D4D4D" height={38} width={90} className='rightBox' onClick={handleWithdraw} />
+                            <Button radius="10" content={t('r_recharge')} color="#fff" background="#00B578" height={38} width={90} className='rightBox' onClick={handleRecharge} />
+                            <Button radius="10" content={t('r_withdraw')} color="#fff" background="#4D4D4D" height={38} width={90} className='rightBox' onClick={handleWithdraw} />
                         </div>
                     </AssetsCard>
                 </AssetsBox>
                 <HistoryBox>
-                    <Title className="historyTitle" img={history} name="History " weight="bold" right={<div onClick={() => setVisible(true)}><span><DownFill />{dateYear.toDateString().split(' ')[1]}</span><span><DownFill />{dateYear.getFullYear()}</span></div>} />
+                    <Title className="historyTitle" img={history} name={t('r_history')} weight="bold" right={<div onClick={() => setVisible(true)}><span><DownFill />{dateYear.toDateString().split(' ')[1]}</span><span><DownFill />{dateYear.getFullYear()}</span></div>} />
                     <HistoryContentBox>
                         <HistoryList>
                             <HistoryItem style={{ color: "#B6B6B6" }}>
-                                <div><ClockCircleOutline /><span>Time</span></div>
-                                <div><BillOutline /><span>Money</span></div>
+                                <div><ClockCircleOutline /><span>{t('r_time')}</span></div>
+                                <div><BillOutline /><span>{t('r_money')}</span></div>
                             </HistoryItem>
                             {histories.map(item => (<HistoryItem key={item.id}>
                                 <div className='time'><span>{item.day}</span><span>{item.time}</span></div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {connect} from 'react-redux';
 import { Image, ProgressBar } from 'antd-mobile';
 import { TeamsBox, TeamsContBox, TeamsContBoxTop, LevelCard, TeamBox, CurrentSuccessors, RankingTeam, SuccessorsList, RankingTeamItem, } from './styled';
 import Title from "@/common/title";
@@ -16,22 +17,20 @@ import {
     useHistory,
 } from 'react-router-dom';
 import { getTeams } from '@/api';
-import { store, teamDataSlice } from '@/store';
+import { teamDataSlice } from '@/store';
 import Skeletons from "@/common/skeletons";
+import { t } from 'i18next';
 
-const TeamsPage = () => {
+const TeamsPage = ({teamData, userInfo, handleUpdateData}) => {
     const [showInivate, setShowInivate] = useState(false);
     const [isFinish, setIsFinish] = useState(false);
-    const teamData = store.getState().teamData.data;
     const history = useHistory();
     useEffect(() => {
         getTeams().then(res => {
-          store.dispatch(
-            teamDataSlice.actions.getdata(res)
-          );
-          setIsFinish(true)
+            handleUpdateData(res)
+            setIsFinish(true)
         })
-    }, [teamData])
+    }, [])
     let toSuccessorList = (level) => {
         history.push('/team/list', { level })
     }
@@ -50,8 +49,8 @@ const TeamsPage = () => {
                         style={{ borderRadius: 50 }}
                     />
                     <div className='userInf'>
-                        <div>Time of joined: March,1,2020</div>
-                        <div>All Earnings: 21456.00 USDT≈MYR0.00</div>
+                        <div>{t('t_timeJoin')}: {userInfo.created_at.split(' ')[0]}</div>
+                        <div>{t('t_allEarn')}: 21456.00 USDT≈MYR0.00</div>
                     </div>
                 </TeamsContBoxTop>
                 <TeamsContBox>
@@ -60,9 +59,9 @@ const TeamsPage = () => {
                             <div>
                                 <div>
                                     <span className='count'>+{teamData.y_count}</span>
-                                    <span >people</span>
+                                    <span >{t('t_people')}</span>
                                 </div>
-                                <div className='des'>New quantity in the latest month</div>
+                                <div className='des'>{t('t_quantity')}</div>
 
                             </div>
                             <Image
@@ -103,22 +102,22 @@ const TeamsPage = () => {
                         </div>
                     </LevelCard>
                     <TeamBox>
-                        <Title img={team} name="My team" weight="bold" />
+                        <Title img={team} name={t('t_team')} weight="bold" />
                         <CurrentSuccessors>
                             <div>
-                                <div className='title'>Current successors</div>
-                                <div className='count'><span>{teamData.total}</span><span>people</span></div>
+                                <div className='title'>{t('t_successors')}</div>
+                                <div className='count'><span>{teamData.total}</span><span>{t('t_people')}</span></div>
                             </div>
-                            <Button onClick={() => setShowInivate(true)} radius="10" size="18" content="Invitation" color="#fff" background="#00B578" height={40} width={90} className='rightBox' />
+                            <Button onClick={() => setShowInivate(true)} radius="10" size="18" content={t('t_invitation')} color="#fff" background="#00B578" height={40} width={90} className='rightBox' />
                         </CurrentSuccessors>
                         <RankingTeam >
                             <RankingTeamItem style={{ marginBottom: "10px" }}>
-                                <span>Ranking of Team </span>
-                                <span style={{ color: "#00B578" }}>See more</span>
+                                <span style={{ fontWeight:'bold' }}>{t('t_ranking')}</span>
+                                <span style={{ color: "#00B578",fontSize:12 }}>{t('t_seeMore')}</span>
                             </RankingTeamItem>
                             <RankingTeamItem style={{ color: "#B58E0F" }}>
                                 <span>ID</span>
-                                <span>Earnings</span>
+                                <span>{t('t_earnings')}</span>
                             </RankingTeamItem>
                             {teamData.ranking.map(item => (<RankingTeamItem key={item.user_id}>
                                 <div className='id'><span>{item.user.phone}</span></div>
@@ -128,13 +127,13 @@ const TeamsPage = () => {
                         <SuccessorsList>
                             {teamData.level_list.map(item => (
                                 <div key={item[0].user_id} onClick={() => toSuccessorList(item[0].level)}>
-                                    <span>{item[0].level} level successor</span>
+                                    <span>{item[0].level} {t('t_levelSuccessor')}</span>
                                     <div><span>{item.length}</span><TeamOutline /></div>
                                 </div>
                             ))}
                         </SuccessorsList>
                     </TeamBox>
-                    <div className="noMore">No more successors </div>
+                    <div className="noMore">{t('t_noMore')}</div>
                 </TeamsContBox>
                 <Inivite showInivate={showInivate} setShowInivate={setShowInivate} />
             </TeamsBox> :
@@ -142,5 +141,16 @@ const TeamsPage = () => {
     )
 }
 
-
-export default TeamsPage;
+const getStoreData=(state)=>{
+    return {
+        teamData:state.teamData.data,
+        userInfo:state.counter.userInfo,
+    }
+  }
+  const dispatchAction=(dispatch)=>{
+    return {
+        handleUpdateData:(data)=>dispatch(teamDataSlice.actions.getdata(data)),
+      
+    }
+  }
+  export default connect(getStoreData,dispatchAction)(TeamsPage) ;

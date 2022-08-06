@@ -14,6 +14,7 @@ const Routers = () => {
       <Route exact path="/level" component={LoadableComponent(()=>import("./pages/level"))} />
       <Route exact path="/about" component={LoadableComponent(()=>import("./pages/about"))} />
       <Route exact path="/team/list" component={LoadableComponent(()=>import("./pages/team/successors"))} />
+      <Route exact path="/my/set" component={LoadableComponent(()=>import("./pages/my/infoSets"))} />
       <Redirect path="*" to="/"></Redirect>
 
     </Switch>

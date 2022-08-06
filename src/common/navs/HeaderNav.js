@@ -12,8 +12,9 @@ import team from '@/assets/icons/bottomNav/team.png';
 import team_active from '@/assets/icons/bottomNav/team_active.png';
 import my from '@/assets/icons/bottomNav/my.png';
 import my_active from '@/assets/icons/bottomNav/my_active.png';
+import { t } from 'i18next';
 // const { SubMenu } = Menu;
-
+import '@/i18n';
 const HeaderNav = () => {
   const history = useHistory()
   const location = useLocation()
@@ -26,7 +27,7 @@ const HeaderNav = () => {
   const tabs = [
     {
       key: '/',
-      title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>home</span>),
+      title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>{t('home')}</span>),
       icon: ((active) => <Image
       src={active ? home_active : home}
       width={30}
@@ -36,7 +37,7 @@ const HeaderNav = () => {
     },
     {
       key: '/recharge',
-      title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>Recharge</span>),
+      title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>{t('recharge')}</span>),
       icon: ((active) => <Image
       src={active ? recharge_active : recharge}
       width={30}
@@ -46,7 +47,7 @@ const HeaderNav = () => {
     },
     {
       key: '/team',
-      title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>Team</span>),
+      title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>{t('team')}</span>),
       icon: ((active) => <Image
       src={active ? team_active : team}
       width={30}
@@ -56,7 +57,7 @@ const HeaderNav = () => {
     },
     {
       key: '/my',
-      title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>My</span>),
+      title: ((active) => <span style={{color:active ? '#333' : '#B0B0B0'}}>{t('my')}</span>),
       icon: ((active) => <Image
       src={active ? my_active : my}
       width={30}
