@@ -55,8 +55,19 @@ const teamDataSlice = createSlice({
     },
     reducers: {
         getdata: (state, action) => {
-            console.log(action.payload,'wrhweruiowueio')
             return {...state, data: action.payload}
+        },
+    }
+})
+const staticDataSlice = createSlice({
+    name: 'staticData',
+    initialState: {
+        data: null
+    },
+    reducers: {
+        getdata: (state, action) => {
+            console.log(action.payload,'wrhweruiowueio')
+            return {...state, data: {...state.data,...action.payload}}
         },
     }
 })
@@ -66,6 +77,7 @@ const store = configureStore({
         counter: counterSlice.reducer,
         homeData: homeDataSlice.reducer,
         teamData: teamDataSlice.reducer,
+        staticData:staticDataSlice.reducer
     }
 })
 
@@ -73,5 +85,6 @@ export {
     store,
     counterSlice,
     homeDataSlice,
-    teamDataSlice
+    teamDataSlice,
+    staticDataSlice
 }

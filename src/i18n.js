@@ -17,7 +17,7 @@ i18n
     },
   },
   //默认语言
-  fallbackLng: "zh",
+  fallbackLng: "en",
   debug: false,
   interpolation: {
     escapeValue: false,

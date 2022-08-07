@@ -210,7 +210,6 @@ const getStoreData=(state)=>{
 const dispatchAction=(dispatch)=>{
   return {
     
-    
   }
 }
 export default connect(getStoreData,dispatchAction)(TeamsPage) ;

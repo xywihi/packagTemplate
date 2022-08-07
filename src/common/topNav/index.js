@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { TitleBox } from './styled.js';
 import { Image, Picker, NavBar } from 'antd-mobile';
 import i18n from "i18next";
-const Title = ({ className, back , right, left , type }) => {
+import { staticDataSlice } from "@/store";
+import {connect} from 'react-redux';
+const Title = ({ className, back , right, left , type,handleUpdateData}) => {
   const [showInivate, setShowInivate] = useState(false);
   const [value, setValue] = useState(['M'])
   const handleClick = e => {
@@ -11,9 +13,7 @@ const Title = ({ className, back , right, left , type }) => {
   const basicColumns = [
     [
       { label: 'English', value: 'en' },
-      { label: 'Frence', value: 'fr' },
       { label: '简体中文', value: 'zh' },
-      { label: '繁体中文', value: 'fz' },
     ]
   ]
   let handleDo=()=>{
@@ -38,11 +38,23 @@ const Title = ({ className, back , right, left , type }) => {
         value={value}
         onConfirm={v => {
           i18n.changeLanguage(v);
-          setValue(v)
+          setValue(v);
+          handleUpdateData({language:v[0]})
         }}
       />
     </>
   );
 }
 
-export default Title
+const getStoreData=(state)=>{
+  return {
+    userInfo:state.counter.userInfo,
+  }
+}
+const dispatchAction=(dispatch)=>{
+  return {
+    handleUpdateData:(data)=>dispatch(staticDataSlice.actions.getdata(data)),
+    
+  }
+}
+export default connect(getStoreData,dispatchAction)(Title) ;

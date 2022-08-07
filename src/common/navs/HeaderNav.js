@@ -4,6 +4,7 @@ import {
   useLocation,
 } from 'react-router-dom'
 import { NavBar, TabBar, Image } from 'antd-mobile';
+import {connect} from 'react-redux';
 import home from '@/assets/icons/bottomNav/home.png';
 import home_active from '@/assets/icons/bottomNav/home_active.png';
 import recharge from '@/assets/icons/bottomNav/recharge.png';
@@ -81,4 +82,9 @@ const HeaderNav = () => {
   );
 }
 
-export default HeaderNav
+const getStoreData=(state)=>{
+  return {
+    staticData:state.staticData,
+  }
+}
+export default connect(getStoreData)(HeaderNav) ;
