@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import Title from "@/common/title";
 import TopNav from "@/common/TopNav";
+import { connect } from "react-redux";
 import { LeftOutline  } from 'antd-mobile-icons';
 const Aboutus = () => {
     const history = useHistory();
@@ -85,5 +86,14 @@ const Aboutus = () => {
     )
 }
 
-
-export default Aboutus;
+const getStoreData = (state) => {
+    return {
+      staticData:state.staticData.data
+    };
+  };
+  const dispatchAction = (dispatch, ownProps) => {
+    return {
+      
+    };
+  };
+export default connect(getStoreData, dispatchAction)(Aboutus);

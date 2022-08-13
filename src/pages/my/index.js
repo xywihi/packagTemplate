@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {connect} from "react-redux";
 import { Image, NavBar } from "antd-mobile";
 import {
@@ -11,6 +11,7 @@ import {
   InfoBox,
   InfoContent,
   InfoItem,
+  CoinBox
 } from "./styled";
 import avtor from "@/assets/images/avtor.png";
 import money from "@/assets/icons/money.png";
@@ -30,8 +31,10 @@ import Button from "@/common/Button";
 import Loading from "@/common/Loading";
 import { toLogout } from "@/api";
 import { t } from "i18next";
+import {getIncomeStatistics} from '@/api';
 const TeamsPage = ({userInfo, history}) => {
-  const [isLoading,setIsLoading]=useState(false)
+  const [isLoading,setIsLoading]=useState(false);
+  const [incomeStatistics,setIncomeStatistics]=useState({});
   const cards = [
     grass_icon1,
     grass_icon1,
@@ -39,14 +42,18 @@ const TeamsPage = ({userInfo, history}) => {
     grass_icon1,
     grass_icon2,
   ];
+  useEffect(() => {
+    getIncomeStatistics().then(res=>setIncomeStatistics(res))
+  }, []);
   let toSuccessorList = (level) => {
     history.push("/team/list", { level });
   };
   let handleRecharge = () => {
-    console.log("recharge");
+    history.push("/my/recharge");
+   
   };
   let handleWithdraw = () => {
-    console.log("withdraw");
+    history.push("/my/withdraw");
   };
   let handleLogout = () => {
     setIsLoading(true)
@@ -59,6 +66,9 @@ const TeamsPage = ({userInfo, history}) => {
   let toInfoSets = () => {
     history.push("/my/set");
   };
+  let toEarningDetail=()=>{
+    history.push("/recharge/detail")
+  }
   return (
     <MyBox>
        {isLoading && <Loading/>}
@@ -81,7 +91,7 @@ const TeamsPage = ({userInfo, history}) => {
       <MyContBoxTop>
         <div className="userInfo">
           <Image
-            src={avtor}
+            src={'/avatar/'+userInfo.avatar+'.png'}
             width={50}
             height={50}
             fit="cover"
@@ -91,7 +101,7 @@ const TeamsPage = ({userInfo, history}) => {
             <div>{userInfo.name}</div>
             <div>
               <span>ID: MS215467391</span>
-              <span>xxx coin: {store.getState().counter.userInfo.coin}</span>
+              
             </div>
           </div>
         </div>
@@ -114,13 +124,14 @@ const TeamsPage = ({userInfo, history}) => {
         </div>
       </MyContBoxTop>
       <MyContBox>
+        <CoinBox><span>xxx coin: </span><span>{store.getState().counter.userInfo.coin}</span></CoinBox>
         <AssetsBox>
           <Title
             img={money}
             name={t('r_assets')}
             weight="bold"
             right={
-              <span style={{ color: "#00B578", fontWeight: 500 }}>{t('r_detail')}</span>
+              <span onClick={toEarningDetail} style={{ color: "#00B578", fontWeight: 500 }}>{t('r_detail')}</span>
             }
           />
           <AssetsCard>
@@ -156,22 +167,22 @@ const TeamsPage = ({userInfo, history}) => {
               name={<span style={{ color: "#fff" }}>{t('t_earnings')}</span>}
               weight="bold"
               right={
-                <span style={{ color: "#00B578", fontWeight: 500 }}>
+                <span onClick={toEarningDetail} style={{ color: "#00B578", fontWeight: 500 }}>
                   {t('r_detail')}
                 </span>
               }
             />
             <div className="bottomContent">
               <div>
-                <div>21456.00</div>
+                <div>{incomeStatistics.total || 0}</div>
                 <div>{t('m_total')}</div>
               </div>
               <div>
-                <div>367.00</div>
+                <div>{incomeStatistics.today || 0}</div>
                 <div>{t('m_today')}</div>
               </div>
               <div>
-                <div>647.00</div>
+                <div>{incomeStatistics.yesterday || 0}</div>
                 <div>{t('m_yesterday')}</div>
               </div>
             </div>

@@ -81,6 +81,20 @@ export const MyContBox = styled.div`
     overflow: auto;
     margin-bottom: 50px;
 `
+export const CoinBox = styled.div`
+    padding:12px;
+    width: calc(100% - 24px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:12px;
+    border-radius:50px;
+    background:#f7f7f7;
+    margin-top:20px;
+    span:last-child{
+        font-weight:bold;
+    }
+`
 export const AssetsBox = styled.div`
     margin-top:32px;
 `

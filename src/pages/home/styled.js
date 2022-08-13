@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import homeBg from '../../assets/images/homeBg.png';
+import homeBg3 from '../../assets/images/homeBg3.jpg';
 import xianrenzhang from '../../assets/images/xianrenzhang.png';
 import grassesBg from '../../assets/images/grassesBg.png';
-export const HomeBox = styled.div`
+export const HomeBox = styled.div `
     flex: 1;
     height: 100%;
     overflow:auto;
-    background:url(${homeBg});
+    background:url(${homeBg3});
     background-size:180% auto;
     background-repeat: no-repeat;
     background-attachment:fixed;
@@ -15,7 +15,7 @@ export const HomeBox = styled.div`
     
 }
 `
-export const HomeInnerBoxFirst = styled.div`
+export const HomeInnerBoxFirst = styled.div `
     margin-top:180px;
     background:#fff;
     border-top-left-radius:50px;
@@ -29,19 +29,21 @@ export const HomeInnerBoxFirst = styled.div`
         border-bottom-right-radius:50px;
         position:absolute;
         box-shadow:0px 20px 0px #fff,20px 0px 0px #fff,40px 10px 0px #fff;
+        -moz-box-shadow:0px 20px 0px #fff,20px 0px 0px #fff,40px 10px 0px #fff;
+        -webkit-box-shadow:0px 20px 0px #fff,20px 0px 0px #fff,40px 10px 0px #fff;
         top:-50px;
         right:0;
         z-index:0;
     }
 `
-export const HomeContentBox = styled.div`
+export const HomeContentBox = styled.div `
     z-index:1;
     width: calc(100% - 24px);
     position:relative;
     top:-80px;
     padding: 0 12px;
 `
-export const NoticeBox = styled.div`
+export const NoticeBox = styled.div `
     color:#00B578;
     background:#ECF4EE;
     flex: 1;
@@ -52,7 +54,7 @@ export const NoticeBox = styled.div`
         margin-left:6px;
     }
 `
-export const GetCionsBox = styled.div`
+export const GetCionsBox = styled.div `
     color:#00B578;
     background:#ECF4EE;
     flex: 1;
@@ -107,7 +109,7 @@ export const GetCionsBox = styled.div`
         padding:0;
     }
 `
-export const IconsTabBox = styled.div`
+export const IconsTabBox = styled.div `
 margin:14px 0;
 .adm-space-item{
     flex:1;
@@ -126,10 +128,10 @@ margin:14px 0;
        
     }
 `
-export const DonationBox = styled.div`
+export const DonationBox = styled.div `
 margin-top:32px;
 `
-export const DonationContent = styled.div`
+export const DonationContent = styled.div `
 margin-top:20px;
 display:flex;
 .donateBtn{
@@ -153,16 +155,16 @@ display:flex;
     }
 }
 `
-export const PioneerBox = styled.div`
+export const PioneerBox = styled.div `
     margin-top:32px;
 `
 
-export const PioneerContent = styled.div`
+export const PioneerContent = styled.div `
     display:flex;
     margin-top:20px;
     justify-content:space-between;
 `
-export const PioneerCard = styled.div`
+export const PioneerCard = styled.div `
     height:118px;
     width:48%;
     border-radius:10px;
@@ -176,6 +178,7 @@ export const PioneerCard = styled.div`
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+    
     .des{
         font-size:12px;
         color:#BFBFBF;
@@ -186,10 +189,10 @@ export const PioneerCard = styled.div`
     }
     
 `
-export const ForestBox = styled.div`
+export const ForestBox = styled.div `
     margin-top:32px;
 `
-export const ForestContent = styled.div`
+export const ForestContent = styled.div `
     width: 100%;
     margin-top:20px;
     justify-content:space-between;
@@ -197,7 +200,7 @@ export const ForestContent = styled.div`
         background:#00B578;
     }
 `
-export const SwiperItem = styled.div`
+export const SwiperItem = styled.div `
         height: 96px;
         padding:12px;
         border-radius:10px;
@@ -218,13 +221,13 @@ export const SwiperItem = styled.div`
             font-size:13px;
         }
 `
-export const ForestItemDes = styled.div`
+export const ForestItemDes = styled.div `
         margin-top:12px;
         color:#444;
         font-size:14px;
         line-height:24px;
 `
-export const ModalContentBox = styled.div`
+export const ModalContentBox = styled.div `
         background:#fff;
         padding:16px;
         border-radius:10px;
@@ -249,7 +252,7 @@ export const ModalContentBox = styled.div`
             transform:scale(${props => props.finish ? 1 : 0});
         }
 `
-export const ModalTopCad = styled.div`
+export const ModalTopCad = styled.div `
     width:214px;
     height:72px;
     border-radius:10px;
@@ -269,7 +272,7 @@ export const ModalTopCad = styled.div`
         margin-left:6px;
     }
 `
-export const ModalContent = styled.div`
+export const ModalContent = styled.div `
     margin-top:40px;
     p:first-child{
         text-align:center;
@@ -285,7 +288,7 @@ export const ModalContent = styled.div`
         line-height:16px;
     }
 `
-export const ModalButton = styled.div`
+export const ModalButton = styled.div `
     width: 113px;
     height: 36px;
     background: #00B578;
@@ -296,8 +299,10 @@ export const ModalButton = styled.div`
     text-align: center;
     margin-top: 37px;
     box-shadow:0px 4px 10px #0e8c6170;
+    -moz-box-shadow:0px 4px 10px #0e8c6170;/*firefox*/ 
+	-webkit-box-shadow:0px 4px 10px #0e8c6170;/*webkit*/
 `
-export const RadiuBox = styled.div`
+export const RadiuBox = styled.div `
     width:60px;
     height:60px;
     margin-bottom: 10px;
@@ -309,6 +314,8 @@ export const RadiuBox = styled.div`
         background:#9adabb7a;
         ${'' /* isolation: isolate; */}
         box-shadow:inset 0px -4px 10px #91D6A3,inset -1px 1px 1px #fff,0px 4px 10px #0e8c6170;
+        -moz-box-shadow:inset 0px -4px 10px #91D6A3,inset -1px 1px 1px #fff,0px 4px 10px #0e8c6170;
+        -webkit-box-shadow:inset 0px -4px 10px #91D6A3,inset -1px 1px 1px #fff,0px 4px 10px #0e8c6170;
         border-radius:50%;
         position:relative;
         display:flex;
@@ -331,10 +338,12 @@ export const RadiuBox = styled.div`
     }
     
 `
-export const Radiu = styled.div`
+export const Radiu = styled.div `
     width:140px;
     height:140px;
     box-shadow:0px 0px 0px 100px #69e083cc;
+    -moz-box-shadow:0px 0px 0px 100px #69e083cc;
+    -webkit-box-shadow:0px 0px 0px 100px #69e083cc;
     ${'' /* mix-blend-mode: difference; */}
     border-radius:30%;
     position:absolute;
@@ -356,10 +365,12 @@ export const Radiu = styled.div`
         }
     }
 `
-export const RadiuInner = styled.div`
+export const RadiuInner = styled.div `
     width:140px;
     height:140px;
     box-shadow:0px 0px 0px 100px #5cc878e6;
+    -moz-box-shadow:0px 0px 0px 100px #5cc878e6;
+    -webkit-box-shadow:0px 0px 0px 100px #5cc878e6;
     border-radius:36%;
     position:absolute;
     top:-90px;
@@ -380,8 +391,7 @@ export const RadiuInner = styled.div`
         }
     }
 `
-export const GrassesImg = styled.div`
+export const GrassesImg = styled.div `
     position:absolute;
     top:14px;
 `
-

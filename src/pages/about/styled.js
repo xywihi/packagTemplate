@@ -14,7 +14,9 @@ export const AboutBox = styled.div`
         width:100%;
         color:#333;
         background:#fff;
-        box-shadow:0px 2px 10px #ececec
+        box-shadow:0px 2px 10px #ececec;
+        -moz-box-shadow:0px 2px 10px #ececec;
+        -webkit-box-shadow:0px 2px 10px #ececec;
     }
     .noMore{
         color:#E7E7E7;
@@ -47,6 +49,8 @@ export const KnowBox = styled.div`
         height:${props=>props.touched ? "24px" : "12px"};
         background:#07B9B9;
         box-shadow:0px 4px 10px #0e8c6170;
+        -moz-box-shadow:0px 4px 10px #0e8c6170;
+        -webkit-box-shadow:0px 4px 10px #0e8c6170;
         margin:auto;
         svg{
             display:none;

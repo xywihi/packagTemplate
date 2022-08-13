@@ -16,12 +16,13 @@ export const getCountry=()=>new Promise((resolve)=>{
 })
 
 //登录
-export const toLogin=(parameter)=>new Promise((resolve)=>{
+export const toLogin=(parameter)=>new Promise((resolve,reject)=>{
     post('/client/login',parameter).then(res => {
         // document.cookie="token="+res.data.token;
         // store.dispatch(counterSlice.actions.update(res));
         resolve(res.data)
     }).catch(err => {
+        reject(err)
         Toast.show({
             content: err,
             position: 'top',
@@ -170,5 +171,98 @@ export const handleLotterySuper=()=>new Promise((resolve)=>{
         })
     })
 })
+//充值记录
+export const getRechargeRecord=(params)=>new Promise((resolve)=>{
+    get('/client/recharge-list',params).then(res => {
+        // document.cookie="token="+res.data.token;
+        // store.dispatch(counterSlice.actions.update(res));
+        resolve(res.data.data)
+    }).catch(err => {
+        Toast.show({
+            content: err,
+            position: 'top',
+        })
+    })
+})
+//提现记录
+export const getWithdrawalRecord=(params)=>new Promise((resolve)=>{
+    get('/client/withdraw-list',params).then(res => {
+        // document.cookie="token="+res.data.token;
+        // store.dispatch(counterSlice.actions.update(res));
+        resolve(res.data.data)
+    }).catch(err => {
+        Toast.show({
+            content: err,
+            position: 'top',
+        })
+    })
+})
+//资金记录
+export const getFundRecord=(params)=>new Promise((resolve)=>{
+    get('/client/user-wallet-log',params).then(res => {
+        // document.cookie="token="+res.data.token;
+        // store.dispatch(counterSlice.actions.update(res));
+        resolve(res.data.data)
+    }).catch(err => {
+        Toast.show({
+            content: err,
+            position: 'top',
+        })
+    })
+})
+//收入统计
+export const getIncomeStatistics=()=>new Promise((resolve)=>{
+    get('/client/user-earnings').then(res => {
+        // document.cookie="token="+res.data.token;
+        // store.dispatch(counterSlice.actions.update(res));
+        resolve(res.data.data)
+    }).catch(err => {
+        Toast.show({
+            content: err,
+            position: 'top',
+        })
+    })
+})
 
+//获取用户钱包地址
 
+export const handleGetWallet = () =>
+  new Promise((resolve) => {
+    get("/client/user-wallet")
+      .then((res) => {
+        // document.cookie="token="+res.data.token;
+        // store.dispatch(counterSlice.actions.update(res));
+        resolve(res.data.data);
+      })
+      .catch((err) => {
+        Toast.show({
+          icon: "fail",
+          content: err,
+          position: "top",
+        });
+      });
+  });
+
+//提交提现申请
+export const handleWithdraw = (data) =>
+  new Promise((resolve) => {
+    post("/client/user-withdraw", { ...data })
+      .then((res) => {
+        // document.cookie="token="+res.data.token;
+        // store.dispatch(counterSlice.actions.update(res));
+        Toast.show({
+          icon: "success",
+          content: res.message,
+          position: "center",
+        });
+      
+        resolve(res);
+      })
+      .catch((err) => {
+        Toast.show({
+          icon: "fail",
+          content: err,
+          position: "top",
+        });
+      });
+  });

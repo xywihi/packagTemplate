@@ -11,7 +11,7 @@ import QRCode from "@/assets/images/QRCode.png";
 import level4 from "@/assets/icons/level4.png";
 import level5 from "@/assets/icons/level5.png";
 import team from "@/assets/icons/team.png";
-import level4Big from "@/assets/images/level4Big.png";
+import levelBig from "@/assets/images/levelBig.png";
 import avtor from "@/assets/images/avtor.png";
 import {
     useHistory,
@@ -21,10 +21,10 @@ import { teamDataSlice } from '@/store';
 import Skeletons from "@/common/skeletons";
 import { t } from 'i18next';
 
-const TeamsPage = ({teamData, userInfo, handleUpdateData}) => {
+const TeamsPage = ({teamData, userInfo, history, handleUpdateData}) => {
     const [showInivate, setShowInivate] = useState(false);
     const [isFinish, setIsFinish] = useState(false);
-    const history = useHistory();
+    // const history = useHistory();
     useEffect(() => {
         getTeams().then(res => {
             handleUpdateData(res)
@@ -32,7 +32,7 @@ const TeamsPage = ({teamData, userInfo, handleUpdateData}) => {
         })
     }, [])
     let toSuccessorList = (level) => {
-        history.push('/team/list', { level })
+        history.push({pathname:'/team/list',  state:{level}})
     }
     return (
         teamData ?
@@ -42,7 +42,7 @@ const TeamsPage = ({teamData, userInfo, handleUpdateData}) => {
                 </div>
                 <TeamsContBoxTop>
                     <Image
-                        src={avtor}
+                        src={'/avatar/'+userInfo.avatar+'.png'}
                         width={50}
                         height={50}
                         fit='cover'
@@ -64,15 +64,19 @@ const TeamsPage = ({teamData, userInfo, handleUpdateData}) => {
                                 <div className='des'>{t('t_quantity')}</div>
 
                             </div>
+                            <div className='levelIcon'>
                             <Image
-                                src={level4Big}
+                                src={levelBig}
                                 width={80}
                                 height={80}
                                 fit='cover'
                             />
+                            <span>{userInfo.pioneer_level}</span>
+                            </div>
+                            
 
                         </div>
-                        <div>
+                        {/* <div>
                             <div className='levelIcons'>
                                 <Image
                                     src={level4}
@@ -99,7 +103,7 @@ const TeamsPage = ({teamData, userInfo, handleUpdateData}) => {
                                 <span>500</span>
                                 <span>640</span>
                             </div>
-                        </div>
+                        </div> */}
                     </LevelCard>
                     <TeamBox>
                         <Title img={team} name={t('t_team')} weight="bold" />
@@ -110,7 +114,7 @@ const TeamsPage = ({teamData, userInfo, handleUpdateData}) => {
                             </div>
                             <Button onClick={() => setShowInivate(true)} radius="10" size="18" content={t('t_invitation')} color="#fff" background="#00B578" height={40} width={90} className='rightBox' />
                         </CurrentSuccessors>
-                        <RankingTeam >
+                        {/* <RankingTeam >
                             <RankingTeamItem style={{ marginBottom: "10px" }}>
                                 <span style={{ fontWeight:'bold' }}>{t('t_ranking')}</span>
                                 <span style={{ color: "#00B578",fontSize:12 }}>{t('t_seeMore')}</span>
@@ -123,7 +127,7 @@ const TeamsPage = ({teamData, userInfo, handleUpdateData}) => {
                                 <div className='id'><span>{item.user.phone}</span></div>
                                 <div className="money">{item.total_award}</div>
                             </RankingTeamItem>))}
-                        </RankingTeam>
+                        </RankingTeam> */}
                         <SuccessorsList>
                             {teamData.level_list.map(item => (
                                 <div key={item[0].user_id} onClick={() => toSuccessorList(item[0].level)}>
@@ -145,6 +149,7 @@ const getStoreData=(state)=>{
     return {
         teamData:state.teamData.data,
         userInfo:state.counter.userInfo,
+        staticData:state.staticData.data
     }
   }
   const dispatchAction=(dispatch)=>{

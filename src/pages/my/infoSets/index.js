@@ -46,7 +46,7 @@ const InfoSets = ({ history, userInfo, handleUpdateData }) => {
         <List header={t("ms_info")}>
           <List.Item
             prefix={<CameraOutline />}
-            extra={<Avatar src={avatar} style={{ "--size": "32px" }} />}
+            extra={<Avatar src={'/avatar/'+userInfo.avatar+'.png'} style={{ "--size": "32px" }} />}
             onClick={() =>
               setVisible({
                 show: true,

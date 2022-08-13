@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import sunBg from '../../assets/images/sunBg.png';
 export const RechargeBox = styled.div`
+    display: flex;
+    flex-direction: column;
     padding:0 12px;
     width:100%;
     height:100%;
     overflow:auto;
-    padding-bottom: 80px;
     &::-webkit-scrollbar {
         display: none; /* Chrome Safari */
     }
@@ -15,16 +16,24 @@ export const RechargeBox = styled.div`
         width:100%;
         color:#333;
         background:#fff;
-        box-shadow:0px 2px 10px #ececec
+        box-shadow:0px 2px 10px #ececec;
+        -moz-box-shadow:0px 2px 10px #ececec;
+        -webkit-box-shadow:0px 2px 10px #ececec;
     }
 `
 export const RechargeContent = styled.div`
+    flex:1;
+    display: flex;
+    flex-direction: column;
 `
 export const AssetsBox = styled.div`
-    margin-top:110px;
+    margin-top:70px;
 `
 export const HistoryBox = styled.div`
-    
+    margin-bottom: 80px;
+    flex:1;
+    display: flex;
+    flex-direction: column;
     .historyTitle{
         position: sticky;
         top: 38px;
@@ -84,6 +93,7 @@ export const HistoryItem = styled.div`
     }
 `
 export const HistoryList = styled.div`
+    height:100%;
     &>div:first-child {
         border:none;
         padding:0;
@@ -94,4 +104,5 @@ export const HistoryList = styled.div`
 `
 export const HistoryContentBox = styled.div`
     margin-top: 10px;
+    flex:1;
 `

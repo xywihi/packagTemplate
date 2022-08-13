@@ -61,6 +61,16 @@ export const LevelCard = styled.div`
             color:#2F5246;
             margin-top:12px;
         }
+        .levelIcon{
+            position:relative;
+            span{
+                position: absolute;
+                top: calc(50% - 10px);
+                left: calc(50% - 8px);
+                font-size: 22px;
+                color:#3D3D3D;
+            }
+        }
     }
     .levelIcons,.levelCount{
         display:flex;

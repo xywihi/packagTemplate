@@ -4,7 +4,7 @@ import { Image, Picker, NavBar } from 'antd-mobile';
 import i18n from "i18next";
 import { staticDataSlice } from "@/store";
 import {connect} from 'react-redux';
-const Title = ({ className, back , right, left , type,handleUpdateData}) => {
+const Title = ({ className, back , right, left , type, staticData, handleUpdateData}) => {
   const [showInivate, setShowInivate] = useState(false);
   const [value, setValue] = useState(['M'])
   const handleClick = e => {
@@ -13,7 +13,10 @@ const Title = ({ className, back , right, left , type,handleUpdateData}) => {
   const basicColumns = [
     [
       { label: 'English', value: 'en' },
+      { label: 'Portuguese', value: 'pg' },
+      { label: 'Spanish', value: 'sp' },
       { label: '简体中文', value: 'zh' },
+
     ]
   ]
   let handleDo=()=>{
@@ -25,9 +28,8 @@ const Title = ({ className, back , right, left , type,handleUpdateData}) => {
   }
   return (
     <>
-      <NavBar back={back} left={left} right={right && <span onClick={handleDo}>{basicColumns[0].filter(item=>{
-        console.log(item,value[0],'ooooooooo')
-       return item.value==value[0]
+      <NavBar back={back} left={left} right={right && <span onClick={handleDo}>{ basicColumns[0].filter(item=>{
+       return item.value==staticData?.language
       })[0]?.label || 'English'}</span>}></NavBar>
       <Picker
         columns={basicColumns}
@@ -49,6 +51,7 @@ const Title = ({ className, back , right, left , type,handleUpdateData}) => {
 const getStoreData=(state)=>{
   return {
     userInfo:state.counter.userInfo,
+    staticData:state.staticData.data
   }
 }
 const dispatchAction=(dispatch)=>{

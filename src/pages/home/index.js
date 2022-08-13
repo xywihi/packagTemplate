@@ -6,7 +6,7 @@ import {
   Space,
   Swiper,
   FloatingBubble,
-  Toast,
+  Dialog,
 } from "antd-mobile";
 import {
   HomeBox,
@@ -118,15 +118,15 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
   }, []);
   let getNum = (type) => {
     setVisible({ isvisible: true, type });
-    // let timer = setInterval(() => {
-    //     let newNum = Math.floor(Math.random() * 100);
-    //     setNum({ ...num, value: newNum })
-    // }, 50);
+    let timer = setInterval(() => {
+        let newNum = Math.floor(Math.random() * 100);
+        setNum({ ...num, value: newNum })
+    }, 50);
     handleLotteryNormal().then((res) => {
       let timer2 = setTimeout(() => {
         setNum((value) => ({ value: res.award, done: true }));
         lotteryNormal({ coin: res.coin, award: res.award });
-        // clearInterval(timer);
+        clearInterval(timer);
         clearTimeout(timer2);
       }, 1200);
 
@@ -240,7 +240,16 @@ const HomePage = ({homeData,userInfo,handleUpdateData,lotteryNormal,getCions}) =
                 background="#1AFFB2"
                 height={44}
                 width={86}
-                onClick={() => handleDonate(donateValue)}
+                onClick={() => handleDonate(donateValue).then(res=>{
+                  Dialog.alert({
+                    content: t('h_got')+' '+res.award+' '+t('energy')+' '+res.coin+' '+t('h_coin'),
+                    confirmText:<span style={{color:'#00B578'}}>{t('h_known')}</span>,
+                    onConfirm: () => {
+                      setDonateValue(0);
+                      console.log('Confirmed')
+                    },
+                  })
+                })}
               />
             </DonationContent>
           </DonationBox>

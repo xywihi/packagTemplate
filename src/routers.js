@@ -8,6 +8,7 @@ const Routers = () => {
       
       <Route exact path="/" component={LoadableComponent(()=>import("./pages/home"))} />
       <Route exact path="/recharge" component={LoadableComponent(()=>import("./pages/recharge"))} />
+      <Route exact path="/recharge/detail" component={LoadableComponent(()=>import("./pages/recharge/detail"))} />
       <Route exact path="/team" component={LoadableComponent(()=>import("./pages/team"))} />
       <Route exact path="/my" component={LoadableComponent(()=>import("./pages/my"))} />
       <Route exact path="/login" component={LoadableComponent(()=>import("./pages/login"))} />
@@ -15,6 +16,8 @@ const Routers = () => {
       <Route exact path="/about" component={LoadableComponent(()=>import("./pages/about"))} />
       <Route exact path="/team/list" component={LoadableComponent(()=>import("./pages/team/successors"))} />
       <Route exact path="/my/set" component={LoadableComponent(()=>import("./pages/my/infoSets"))} />
+      <Route exact path="/my/recharge" component={LoadableComponent(()=>import("./pages/my/recharge"))} />
+      <Route exact path="/my/withdraw" component={LoadableComponent(()=>import("./pages/my/withdraw"))} />
       <Redirect path="*" to="/"></Redirect>
 
     </Switch>

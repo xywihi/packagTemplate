@@ -15,6 +15,8 @@ export const LevelBox = styled.div`
         color:#333;
         background:#fff;
         box-shadow:0px 2px 10px #ececec
+        -moz-box-shadow:0px 2px 10px #ececec
+        -webkit-box-shadow:0px 2px 10px #ececec
     }
 `
 export const LevelContentBox = styled.div`
